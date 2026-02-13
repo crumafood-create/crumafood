@@ -1,7 +1,8 @@
+import { NextResponse } from "next/server";
 import { MercadoPagoConfig, Preference } from "mercadopago";
 
 const client = new MercadoPagoConfig({
-  accessToken: process.env.MP_ACCESS_TOKEN,
+  accessToken: process.env.MERCADOPAGO_ACCESS_TOKEN,
 });
 
 export async function POST(req) {
@@ -20,14 +21,24 @@ export async function POST(req) {
             currency_id: "MXN",
           },
         ],
+        back_urls: {
+          success: `${process.env.NEXT_PUBLIC_BASE_URL}/success`,
+          failure: `${process.env.NEXT_PUBLIC_BASE_URL}/failure`,
+          pending: `${process.env.NEXT_PUBLIC_BASE_URL}/pending`,
+        },
+        auto_return: "approved",
       },
     });
 
-    return Response.json({
+    return NextResponse.json({
       id: response.id,
     });
+
   } catch (error) {
     console.error(error);
-    return Response.json({ error: "Error creating preference" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Error creating preference" },
+      { status: 500 }
+    );
   }
 }
