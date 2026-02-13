@@ -11,7 +11,7 @@ export default function Home() {
         },
         body: JSON.stringify({
           title: "Pedido CRUMAFOOD",
-          price: 150,
+          price: 10,
         }),
       });
 
