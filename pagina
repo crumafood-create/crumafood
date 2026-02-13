@@ -1,0 +1,250 @@
+import React from 'react'
+
+export default function Home() {
+  return (
+    <main className="min-h-screen bg-white text-gray-900">
+      <header className="p-4 shadow-md flex justify-between items-center">
+        <h1 className="text-2xl font-bold">CRUMAFOOD</h1>
+        <nav className="space-x-4">
+          <a href="#catalogo">Catálogo</a>
+          <a href="#como-funciona">Cómo funciona</a>
+          <a href="#contacto">Contacto</a>
+        </nav>
+      </header>
+
+      <section className="p-8 text-center bg-gray-100">
+        <h2 className="text-3xl font-semibold mb-4">Tequeños, empanadas y masas congeladas</h2>
+        <p className="mb-6">Envíos a todo México desde Toluca · Crudos y precocidos</p>
+        <button className="px-6 py-3 bg-black text-white rounded-2xl">Hacer pedido</button>
+      </section>
+
+      <section id="catalogo" className="p-8">
+        <h3 className="text-2xl font-bold mb-4">Categorías</h3>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="p-4 border rounded-2xl">Tequeños</div>
+          <div className="p-4 border rounded-2xl">Empanadas</div>
+          <div className="p-4 border rounded-2xl">Discos</div>
+          <div className="p-4 border rounded-2xl">Masas</div>
+        </div>
+      </section>
+
+      <footer className="p-6 bg-gray-900 text-white text-center">
+        <p>CRUMAFOOD · Negocio | Eventos sociales | Lunch</p>
+      </footer>
+    </main>
+  )
+}
+
+// --- LÓGICA DE PRECIOS AUTOMÁTICOS MENUD EO / MAYOREO ---
+// Regla:
+// 1 a 4 paquetes  -> precio_menudeo
+// 5 o más paquetes -> precio_mayoreo
+
+// Ejemplo de estructura de producto
+export const productExample = {
+  id: 'teq-queso-8cm-25',
+  nombre: 'Tequeños de queso (8 cm) – 25 pzs',
+  categoria: 'Tequeños Frescos',
+  estado: 'crudo', // crudo | precocido
+  presentacion: 'Paquete 25 pzs',
+  precio_menudeo: 302,
+  precio_mayoreo: 281,
+}
+
+// Función para calcular precio unitario según cantidad
+export function getUnitPrice(quantity, product) {
+  if (quantity >= 5) return product.precio_mayoreo
+  return product.precio_menudeo
+}
+
+// Función para calcular total del carrito
+export function getItemTotal(quantity, product) {
+  return getUnitPrice(quantity, product) * quantity
+}
+
+
+// ===============================
+// CARRITO DE COMPRAS – CRUMAFOOD
+// ===============================
+
+import { useState } from 'react'
+
+export function useCart() {
+  const [cart, setCart] = useState([])
+
+  function addToCart(product, quantity = 1) {
+    setCart(prev => {
+      const existing = prev.find(item => item.id === product.id)
+      if (existing) {
+        return prev.map(item =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + quantity }
+            : item
+        )
+      }
+      return [...prev, { ...product, quantity }]
+    })
+  }
+
+  function removeFromCart(id) {
+    setCart(prev => prev.filter(item => item.id !== id))
+  }
+
+  function updateQuantity(id, quantity) {
+    setCart(prev =>
+      prev.map(item =>
+        item.id === id ? { ...item, quantity } : item
+      )
+    )
+  }
+
+  function getCartSubtotal() {
+    return cart.reduce((total, item) => {
+      const unitPrice = item.quantity >= 5 ? item.precio_mayoreo : item.precio_menudeo
+      return total + unitPrice * item.quantity
+    }, 0)
+  }
+
+  function isMayoreo() {
+    return cart.some(item => item.quantity >= 5)
+  }
+
+  return {
+    cart,
+    addToCart,
+    removeFromCart,
+    updateQuantity,
+    getCartSubtotal,
+    isMayoreo,
+  }
+}
+
+// MENSAJE FIJO DEL CARRITO
+export const shippingNotice = "❄️ Todos nuestros productos se envían congelados para conservar su calidad durante el envío."
+
+
+// ===============================
+// ENVÍO AUTOMÁTICO – CRUMAFOOD
+// ===============================
+
+// Zonas de envío (ejemplo base)
+export const shippingZones = {
+  local: {
+    label: 'Toluca y zona metropolitana',
+    price: 120,
+  },
+  centro: {
+    label: 'Centro del país',
+    price: 190,
+  },
+  nacional: {
+    label: 'Resto de la República Mexicana',
+    price: 260,
+  },
+}
+
+// Función para calcular envío según zona
+export function calculateShipping(zoneKey) {
+  return shippingZones[zoneKey]?.price || 0
+}
+
+// Total final del pedido
+export function getOrderTotal(subtotal, shipping) {
+  return subtotal + shipping
+}
+
+
+// ===============================
+// MENSAJE DE CONFIRMACIÓN EN CHECKOUT
+// ===============================
+
+export const frozenDeliveryNotice = "❄️ Los productos se envían congelados. Asegúrate de que haya una persona disponible para recibirlos y conservarlos en congelación al momento de la entrega."
+
+// Este mensaje se muestra antes de confirmar el pago
+
+
+// ===============================
+// NOTIFICACIÓN DE PEDIDOS POR WHATSAPP – CRUMAFOOD
+// ===============================
+
+// Este mensaje se envía automáticamente al confirmar el pago
+export function buildWhatsAppMessage(order) {
+  return `🧾 NUEVO PEDIDO – CRUMAFOOD
+
+` +
+    `Cliente: ${order.name}
+` +
+    `Teléfono: ${order.phone}
+
+` +
+    `Productos:
+` +
+    order.items.map(i => - ${i.quantity} x ${i.nombre}).join('
+') +
+    `
+
+Subtotal: $${order.subtotal}` +
+    `
+Envío: $${order.shipping}` +
+    `
+TOTAL: $${order.total}` +
+    `
+
+📍 Dirección:
+${order.address}` +
+    `
+
+❄️ Entrega de productos congelados`;
+}
+
+// Opción simple (link WhatsApp Web)
+export const WHATSAPP_ORDERS_PHONE = '5217225835173'
+
+export function getWhatsAppLink(phone = WHATSAPP_ORDERS_PHONE, message) {
+  return https://wa.me/${phone}?text=${encodeURIComponent(message)}
+}
+
+
+
+// ===============================
+// CHECKOUT VISUAL – CRUMAFOOD
+// ===============================
+
+import React from 'react'
+import { shippingZones } from './shipping'
+import { frozenDeliveryNotice } from './notices'
+
+export function Checkout({ cartSubtotal, onPay }) {
+  return (
+    <section className="p-6 max-w-xl mx-auto">
+      <h2 className="text-2xl font-bold mb-4">Finalizar pedido</h2>
+
+      <form className="space-y-4">
+        <input className="w-full p-3 border rounded-xl" placeholder="Nombre completo" />
+        <input className="w-full p-3 border rounded-xl" placeholder="Teléfono" />
+        <input className="w-full p-3 border rounded-xl" placeholder="Dirección completa" />
+        <textarea className="w-full p-3 border rounded-xl" placeholder="Referencias de entrega" />
+
+        <select className="w-full p-3 border rounded-xl">
+          <option>Selecciona tu zona de envío</option>
+          {Object.entries(shippingZones).map(([key, zone]) => (
+            <option key={key} value={key}>{zone.label} – ${zone.price}</option>
+          ))}
+        </select>
+
+        <div className="bg-gray-100 p-4 rounded-xl text-sm">
+          {frozenDeliveryNotice}
+        </div>
+
+        <div className="flex justify-between font-semibold">
+          <span>Total</span>
+          <span>${cartSubtotal}</span>
+        </div>
+
+        <button type="button" onClick={onPay} className="w-full py-3 bg-black text-white rounded-2xl">
+          Pagar con Mercado Pago
+        </button>
+      </form>
+    </section>
+  )
+}  
