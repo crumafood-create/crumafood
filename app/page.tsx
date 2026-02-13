@@ -1,4 +1,31 @@
+"use client";
+
 export default function Home() {
+
+  const handlePayment = async () => {
+    try {
+      const response = await fetch("/api/create-preference", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title: "Pedido CRUMAFOOD",
+          price: 150,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.id) {
+        window.location.href = `https://www.mercadopago.com.mx/checkout/v1/redirect?pref_id=${data.id}`;
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Error al iniciar el pago");
+    }
+  };
+
   return (
     <main className="min-h-screen bg-white text-gray-900">
       <section className="px-6 py-20 text-center">
@@ -10,13 +37,13 @@ export default function Home() {
           Empanadas y masas congeladas de calidad premium en México.
         </p>
 
-        <a
-          href="#contacto"
+        <button
+          onClick={handlePayment}
           className="bg-black text-white px-6 py-3 rounded-lg"
         >
-          Solicitar información
-        </a>
+          Pagar ahora
+        </button>
       </section>
     </main>
-  )
+  );
 }
