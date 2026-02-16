@@ -31,8 +31,10 @@ export async function POST(req) {
     });
 
     return NextResponse.json({
-      id: response.id,
-    });
+  id: response.id,
+  init_point: response.init_point,
+});
+
 
   } catch (error) {
     console.error(error);
