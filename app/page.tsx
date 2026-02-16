@@ -17,9 +17,10 @@ export default function Home() {
 
       const data = await response.json();
 
-      if (data.id) {
-        window.location.href = `https://www.mercadopago.com.mx/checkout/v1/redirect?pref_id=${data.id}`;
-      }
+     if (data.init_point) {
+  window.location.href = data.init_point;
+}
+
     } catch (error) {
       console.error("Error:", error);
       alert("Error al iniciar el pago");
