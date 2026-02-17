@@ -42,14 +42,14 @@ export async function POST(req: Request) {
 
     if (!existingOrder) {
       await supabase.from("orders").insert([
-        {
-          payment_id: payment.id,
-          status: payment.status,
-          amount: payment.transaction_amount,
-          payer_email: payment.payer.email,
-        },
-      ]);
-    }
+  {
+    payment_id: payment.id.toString(),
+    status: payment.status,
+    amount: payment.transaction_amount,
+    payer_email: payment.payer.email,
+  },
+]);
+
 
     return NextResponse.json({ success: true });
   } catch (error) {
