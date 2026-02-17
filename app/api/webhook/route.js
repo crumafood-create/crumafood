@@ -37,7 +37,7 @@ export async function POST(req: Request) {
     const { data: existingOrder } = await supabase
       .from("orders")
       .select("id")
-      .eq("payment_id", payment.id)
+      .eq("payment_id", payment.id.toString())
       .maybeSingle();
 
     if (!existingOrder) {
