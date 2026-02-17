@@ -1,31 +1,49 @@
 import { NextResponse } from "next/server";
-import { MercadoPagoConfig, Payment } from "mercadopago";
+import { createClient } from "@supabase/supabase-js";
 
-const client = new MercadoPagoConfig({
-  accessToken: process.env.MERCADOPAGO_ACCESS_TOKEN,
-});
-
-export async function POST(req) {
+export async function POST(req: Request) {
   try {
     const body = await req.json();
 
-    if (body.type === "payment") {
-      const payment = new Payment(client);
-      const paymentData = await payment.get({ id: body.data.id });
-
-      console.log("Pago recibido:", paymentData);
-
-      if (paymentData.status === "approved") {
-        console.log("✅ Pago aprobado:", paymentData.id);
-        
-        // Aquí luego conectamos base de datos
-      }
+    if (body.type !== "payment") {
+      return NextResponse.json({ message: "Not a payment" });
     }
 
-    return NextResponse.json({ received: true });
+    const paymentId = body.data.id;
 
+    // Consultar pago en Mercado Pago
+    const mpResponse = await fetch(
+      `https://api.mercadopago.com/v1/payments/${paymentId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.MERCADOPAGO_ACCESS_TOKEN}`,
+        },
+      }
+    );
+
+    const payment = await mpResponse.json();
+
+    if (payment.status !== "approved") {
+      return NextResponse.json({ message: "Payment not approved" });
+    }
+
+    const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_ROLE_KEY!
+    );
+
+    await supabase.from("orders").insert([
+      {
+        payment_id: payment.id,
+        status: payment.status,
+        amount: payment.transaction_amount,
+        payer_email: payment.payer.email,
+      },
+    ]);
+
+    return NextResponse.json({ success: true });
   } catch (error) {
-    console.error("Webhook error:", error);
-    return NextResponse.json({ error: "Webhook error" }, { status: 500 });
+    console.error(error);
+    return NextResponse.json({ error: true }, { status: 500 });
   }
 }
