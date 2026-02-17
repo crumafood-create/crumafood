@@ -1,6 +1,18 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
 export default function SuccessPage({ searchParams }) {
   const paymentId = searchParams?.payment_id;
-  const status = searchParams?.collection_status;
+  const [paymentData, setPaymentData] = useState(null);
+
+  useEffect(() => {
+    if (paymentId) {
+      fetch(`/api/payment?id=${paymentId}`)
+        .then((res) => res.json())
+        .then((data) => setPaymentData(data));
+    }
+  }, [paymentId]);
 
   return (
     <div
@@ -15,16 +27,14 @@ export default function SuccessPage({ searchParams }) {
     >
       <h1 style={{ color: "green" }}>Pago aprobado 🎉</h1>
 
-      {paymentId && (
-        <p>
-          <strong>ID de pago:</strong> {paymentId}
-        </p>
-      )}
-
-      {status && (
-        <p>
-          <strong>Estado:</strong> {status}
-        </p>
+      {paymentData ? (
+        <>
+          <p><strong>ID:</strong> {paymentData.id}</p>
+          <p><strong>Monto:</strong> ${paymentData.amount} MXN</p>
+          <p><strong>Email:</strong> {paymentData.payer_email}</p>
+        </>
+      ) : (
+        <p>Cargando detalles...</p>
       )}
 
       <p>Gracias por tu compra.</p>
