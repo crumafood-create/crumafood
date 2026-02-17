@@ -34,16 +34,21 @@ export async function POST(req: Request) {
 
     await supabase.from("orders").insert([
       {
-        payment_id: payment.id,
-        status: payment.status,
-        amount: payment.transaction_amount,
-        payer_email: payment.payer.email,
-      },
-    ]);
+    // Verificar si ya existe
+const { data: existingOrder } = await supabase
+  .from("orders")
+  .select("id")
+  .eq("payment_id", payment.id)
+  .single();
 
-    return NextResponse.json({ success: true });
-  } catch (error) {
-    console.error(error);
-    return NextResponse.json({ error: true }, { status: 500 });
-  }
+if (!existingOrder) {
+  await supabase.from("orders").insert([
+    {
+      payment_id: payment.id,
+      status: payment.status,
+      amount: payment.transaction_amount,
+      payer_email: payment.payer.email,
+    },
+  ]);
 }
+
