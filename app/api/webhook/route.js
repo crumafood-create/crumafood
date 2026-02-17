@@ -11,7 +11,7 @@ export async function POST(req: Request) {
 
     const paymentId = body.data.id;
 
-    // Consultar pago en Mercado Pago
+    // 🔎 Consultar pago en Mercado Pago
     const mpResponse = await fetch(
       `https://api.mercadopago.com/v1/payments/${paymentId}`,
       {
@@ -23,6 +23,7 @@ export async function POST(req: Request) {
 
     const payment = await mpResponse.json();
 
+    // ✅ Solo continuar si está aprobado
     if (payment.status !== "approved") {
       return NextResponse.json({ message: "Payment not approved" });
     }
@@ -32,23 +33,27 @@ export async function POST(req: Request) {
       process.env.SUPABASE_SERVICE_ROLE_KEY!
     );
 
-    await supabase.from("orders").insert([
-      {
-    // Verificar si ya existe
-const { data: existingOrder } = await supabase
-  .from("orders")
-  .select("id")
-  .eq("payment_id", payment.id)
-  .single();
+    // 🛡️ Verificar si ya existe la orden (anti-duplicados)
+    const { data: existingOrder } = await supabase
+      .from("orders")
+      .select("id")
+      .eq("payment_id", payment.id)
+      .maybeSingle();
 
-if (!existingOrder) {
-  await supabase.from("orders").insert([
-    {
-      payment_id: payment.id,
-      status: payment.status,
-      amount: payment.transaction_amount,
-      payer_email: payment.payer.email,
-    },
-  ]);
+    if (!existingOrder) {
+      await supabase.from("orders").insert([
+        {
+          payment_id: payment.id,
+          status: payment.status,
+          amount: payment.transaction_amount,
+          payer_email: payment.payer.email,
+        },
+      ]);
+    }
+
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error("Webhook error:", error);
+    return NextResponse.json({ error: true }, { status: 500 });
+  }
 }
-
