@@ -4,7 +4,7 @@ export default function Home() {
 
   const handlePayment = async () => {
     try {
-      const response = await fetch("/api/create-preference", {
+      const response = await fetch("/api/checkout", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
