@@ -1,16 +1,44 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
+import crypto from "crypto"; // Necesario para validar la firma
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.SUPABASE_SERVICE_ROLE_KEY
+);
 
 export async function POST(req) {
   try {
-    const body = await req.json();
+    // 1. VALIDACIÓN DE SEGURIDAD (Usando el Secret que pegaste en Vercel)
+    const xSignature = req.headers.get("x-signature");
+    const xRequestId = req.headers.get("x-request-id");
+    const secret = process.env.MERCADOPAGO_WEBHOOK_SECRET;
 
-    if (body.type !== "payment") {
-      return NextResponse.json({ message: "Not a payment" });
+    // Solo validamos si el secret existe para no romper pruebas locales
+    if (secret && xSignature && xRequestId) {
+      const parts = xSignature.split(",");
+      const ts = parts.find(p => p.startsWith("ts=")).split("=")[1];
+      const hash = parts.find(p => p.startsWith("v1=")).split("=")[1];
+      
+      const manifest = `id:${xRequestId};ts:${ts};`;
+      const hmac = crypto.createHmac("sha256", secret).update(manifest).digest("hex");
+
+      if (hmac !== hash) {
+        return NextResponse.json({ error: "Invalid signature" }, { status: 401 });
+      }
     }
 
-    const paymentId = body.data.id;
+    // 2. OBTENCIÓN DEL ID DEL PAGO
+    const { searchParams } = new URL(req.url);
+    const id = searchParams.get("data.id") || searchParams.get("id");
+    const body = await req.json().catch(() => ({}));
+    const paymentId = id || body?.data?.id;
 
+    if (!paymentId) {
+      return NextResponse.json({ message: "No payment ID found" }, { status: 200 });
+    }
+
+    // 3. CONSULTA A MERCADO PAGO
     const mpResponse = await fetch(
       `https://api.mercadopago.com/v1/payments/${paymentId}`,
       {
@@ -20,39 +48,31 @@ export async function POST(req) {
       }
     );
 
+    if (!mpResponse.ok) throw new Error("Error fetching payment data");
     const payment = await mpResponse.json();
 
-    if (payment.status !== "approved") {
-      return NextResponse.json({ message: "Payment not approved" });
-    }
-
-    const supabase = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL,
-      process.env.SUPABASE_SERVICE_ROLE_KEY
-    );
-
-    const { data: existingOrder } = await supabase
-      .from("orders")
-      .select("id")
-      .eq("payment_id", payment.id.toString())
-      .maybeSingle();
-
-    if (!existingOrder) {
-      await supabase.from("orders").insert([
+    // 4. GUARDAR EN SUPABASE SI ESTÁ APROBADO
+    if (payment.status === "approved") {
+      const { error: insertError } = await supabase.from("orders").insert([
         {
           payment_id: payment.id.toString(),
           status: payment.status,
           amount: payment.transaction_amount,
-          payer_email: payment.payer.email,
+          payer_email: payment.payer?.email || "cliente@mercadopago.com",
+          created_at: new Date().toISOString(),
         },
       ]);
+
+      // Si el error es por duplicado, el constraint de Supabase lo manejará
+      if (insertError && insertError.code !== "23505") throw insertError;
+      
+      console.log("✅ Orden procesada:", payment.id);
     }
 
-    return NextResponse.json({ success: true });
+    return NextResponse.json({ received: true }, { status: 200 });
 
   } catch (error) {
-    console.error("Webhook error:", error);
-    return NextResponse.json({ error: true }, { status: 500 });
+    console.error("❌ Webhook error:", error.message);
+    return NextResponse.json({ error: error.message }, { status: 200 });
   }
 }
-
