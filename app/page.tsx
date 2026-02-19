@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from 'react';
-import { useCart } from '../hooks/useCart'; // Asegúrate de crear este archivo con tu lógica
+import { useCart } from './hooks/useCart'; // Asegúrate de crear este archivo con tu lógica
 
 // --- DATOS DE PRODUCTOS (Basado en tu código) ---
 const PRODUCTS = [
