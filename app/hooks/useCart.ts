@@ -1,13 +1,14 @@
 import { useState } from 'react'
 
 export function useCart() {
-  const [cart, setCart] = useState([])
+  // Añadimos "any[]" para que TypeScript no se queje por ahora
+  const [cart, setCart] = useState<any[]>([])
 
-  function addToCart(product, quantity = 1) {
-    setCart(prev => {
-      const existing = prev.find(item => item.id === product.id)
+  function addToCart(product: any, quantity: number = 1) {
+    setCart((prev) => {
+      const existing = prev.find((item) => item.id === product.id)
       if (existing) {
-        return prev.map(item =>
+        return prev.map((item) =>
           item.id === product.id
             ? { ...item, quantity: item.quantity + quantity }
             : item
@@ -17,14 +18,14 @@ export function useCart() {
     })
   }
 
-  function removeFromCart(id) {
-    setCart(prev => prev.filter(item => item.id !== id))
+  function removeFromCart(id: string) {
+    setCart((prev) => prev.filter((item) => item.id !== id))
   }
 
-  function updateQuantity(id, quantity) {
+  function updateQuantity(id: string, quantity: number) {
     if (quantity < 1) return;
-    setCart(prev =>
-      prev.map(item =>
+    setCart((prev) =>
+      prev.map((item) =>
         item.id === id ? { ...item, quantity } : item
       )
     )
@@ -32,14 +33,13 @@ export function useCart() {
 
   function getCartSubtotal() {
     return cart.reduce((total, item) => {
-      // Aplica precio de mayoreo si hay 5 o más unidades
       const unitPrice = item.quantity >= 5 ? item.precio_mayoreo : item.precio_menudeo
       return total + unitPrice * item.quantity
     }, 0)
   }
 
   function isMayoreo() {
-    return cart.some(item => item.quantity >= 5)
+    return cart.some((item) => item.quantity >= 5)
   }
 
   return {
