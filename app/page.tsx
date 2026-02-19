@@ -27,7 +27,7 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
 
   const subtotal = getCartSubtotal();
-  const shippingPrice = SHIPPING_ZONES[shippingZone].price;
+  const shippingPrice = SHIPPING_ZONES[shippingZone as keyof typeof SHIPPING_ZONES].price;
   const total = subtotal + shippingPrice;
 
   const handlePayment = async () => {
