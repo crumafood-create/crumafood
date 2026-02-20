@@ -4,7 +4,7 @@ import { useCart } from './hooks/useCart';
 import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 
 const PRODUCTS = [
-  // --- FRESCOS ---
+  // --- TEQUEÑOS FRESCOS (Paquete 25 pzs) ---
   { id: 'f-teq-q', nombre: 'Tequeños Queso (8cm) - Fresco', categoria: 'Tequeños Frescos', precio_menudeo: 302, precio_mayoreo: 281 },
   { id: 'f-teq-qg', nombre: 'Tequeños Queso con Guayaba (8cm) - Fresco', categoria: 'Tequeños Frescos', precio_menudeo: 372, precio_mayoreo: 346 },
   { id: 'f-teq-dq', nombre: 'Tequeños Doble Queso (8cm) - Fresco', categoria: 'Tequeños Frescos', precio_menudeo: 372, precio_mayoreo: 346 },
@@ -12,13 +12,32 @@ const PRODUCTS = [
   { id: 'f-teq-pz', nombre: 'Tequeños Pizza (8cm) - Fresco', categoria: 'Tequeños Frescos', precio_menudeo: 372, precio_mayoreo: 346 },
   { id: 'f-teq-cq', nombre: 'Tequeños Choriqueso (8cm) - Fresco', categoria: 'Tequeños Frescos', precio_menudeo: 372, precio_mayoreo: 346 },
   { id: 'f-teq-ja', nombre: 'Tequeños Jalapeños con Q. Crema (7cm) - Fresco', categoria: 'Tequeños Frescos', precio_menudeo: 454, precio_mayoreo: 422 },
-  { id: 'f-tp-q', nombre: 'Tequeños Party Queso (5cm) - Fresco', categoria: 'Tequeños Party Frescos', precio_menudeo: 454, precio_mayoreo: 422 },
-  { id: 'f-tp-qg', nombre: 'Tequeños Party Q/Guayaba (5cm) - Fresco', categoria: 'Tequeños Party Frescos', precio_menudeo: 605, precio_mayoreo: 562 },
-  // --- PRECOCIDOS ---
-  { id: 'p-teq-q', nombre: 'Tequeños Queso (8cm) - Precocido', categoria: 'Tequeños Precocidos', precio_menudeo: 325, precio_mayoreo: 309 },
-  { id: 'p-teq-qg', nombre: 'Tequeños Queso/Guayaba (8cm) - Precocido', categoria: 'Tequeños Precocidos', precio_menudeo: 400, precio_mayoreo: 380 },
-  // --- OTROS ---
+
+  // --- EMPANADAS FRESCAS (Paquete 25 pzs) ---
+  { id: 'f-emp-q', nombre: 'Empanada Queso - Fresca', categoria: 'Empanadas Frescas', precio_menudeo: 446, precio_mayoreo: 415 },
+  { id: 'f-emp-jq', nombre: 'Empanada Jamón con Queso - Fresca', categoria: 'Empanadas Frescas', precio_menudeo: 512, precio_mayoreo: 476 },
+  { id: 'f-emp-tq', nombre: 'Empanada Tocino con Queso - Fresca', categoria: 'Empanadas Frescas', precio_menudeo: 512, precio_mayoreo: 476 },
+  { id: 'f-emp-cq', nombre: 'Empanada Chorizo con Queso - Fresca', categoria: 'Empanadas Frescas', precio_menudeo: 512, precio_mayoreo: 476 },
+  { id: 'f-emp-pq', nombre: 'Empanada Pastor con Queso - Fresca', categoria: 'Empanadas Frescas', precio_menudeo: 512, precio_mayoreo: 476 },
+  { id: 'f-emp-bq', nombre: 'Empanada Plátano Macho con Queso - Fresca', categoria: 'Empanadas Frescas', precio_menudeo: 512, precio_mayoreo: 476 },
+
+  // --- MINI EMPANADAS FRESCAS (Paquete 50 pzs) ---
+  { id: 'f-mini-q', nombre: 'Mini Empanada Queso - Fresca', categoria: 'Mini Empanadas Frescas', precio_menudeo: 465, precio_mayoreo: 432 },
+  { id: 'f-mini-jq', nombre: 'Mini Empanada Jamón con Queso - Fresca', categoria: 'Mini Empanadas Frescas', precio_menudeo: 558, precio_mayoreo: 519 },
+  { id: 'f-mini-tq', nombre: 'Mini Empanada Tocino con Queso - Fresca', categoria: 'Mini Empanadas Frescas', precio_menudeo: 558, precio_mayoreo: 519 },
+  { id: 'f-mini-cq', nombre: 'Mini Empanada Chorizo con Queso - Fresca', categoria: 'Mini Empanadas Frescas', precio_menudeo: 558, precio_mayoreo: 519 },
+  { id: 'f-mini-pq', nombre: 'Mini Empanada Pastor con Queso - Fresca', categoria: 'Mini Empanadas Frescas', precio_menudeo: 558, precio_mayoreo: 519 },
+  { id: 'f-mini-bq', nombre: 'Mini Empanada Plátano con Queso - Fresca', categoria: 'Mini Empanadas Frescas', precio_menudeo: 558, precio_mayoreo: 519 },
+
+  // --- PRECOCIDOS DESTACADOS (Tequeños y Empanadas) ---
+  { id: 'p-teq-q', nombre: 'Tequeños Queso (8cm) - Precocido', categoria: 'Precocidos', precio_menudeo: 325, precio_mayoreo: 309 },
+  { id: 'p-emp-q', nombre: 'Empanada Queso - Precocida', categoria: 'Precocidos', precio_menudeo: 480, precio_mayoreo: 446 },
+  { id: 'p-mini-q', nombre: 'Mini Empanada Queso - Precocida', categoria: 'Precocidos', precio_menudeo: 500, precio_mayoreo: 465 },
+
+  // --- COMPLEMENTOS ---
   { id: 'd-9', nombre: 'Discos Nº 9 (12 pzs)', categoria: 'Discos', precio_menudeo: 30, precio_mayoreo: 28 },
+  { id: 'd-14', nombre: 'Discos Nº 14 (12 pzs)', categoria: 'Discos', precio_menudeo: 66, precio_mayoreo: 61 },
+  { id: 'm-est', nombre: 'Masa Estirada (500g)', categoria: 'Masas', precio_menudeo: 35, precio_mayoreo: 33 },
   { id: 'm-piz', nombre: 'Masa Pizza (1kg)', categoria: 'Masas', precio_menudeo: 60, precio_mayoreo: 45 },
 ];
 
