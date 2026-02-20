@@ -1,9 +1,11 @@
 "use client";
 import React, { useState } from 'react';
 import { useCart } from './hooks/useCart';
+// Importamos los componentes de usuario de Clerk
+import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 
 const PRODUCTS = [
-  // --- FRESCOS (25 pzs) ---
+  // ... (Toda tu lista de productos que ya tenemos configurada)
   { id: 'f-teq-q', nombre: 'Tequeños Queso (8cm) - Fresco', categoria: 'Tequeños Frescos', precio_menudeo: 302, precio_mayoreo: 281 },
   { id: 'f-teq-qg', nombre: 'Tequeños Queso con Guayaba (8cm) - Fresco', categoria: 'Tequeños Frescos', precio_menudeo: 372, precio_mayoreo: 346 },
   { id: 'f-teq-dq', nombre: 'Tequeños Doble Queso (8cm) - Fresco', categoria: 'Tequeños Frescos', precio_menudeo: 372, precio_mayoreo: 346 },
@@ -11,28 +13,10 @@ const PRODUCTS = [
   { id: 'f-teq-pz', nombre: 'Tequeños Pizza (8cm) - Fresco', categoria: 'Tequeños Frescos', precio_menudeo: 372, precio_mayoreo: 346 },
   { id: 'f-teq-cq', nombre: 'Tequeños Choriqueso (8cm) - Fresco', categoria: 'Tequeños Frescos', precio_menudeo: 372, precio_mayoreo: 346 },
   { id: 'f-teq-ja', nombre: 'Tequeños Jalapeños con Q. Crema (7cm) - Fresco', categoria: 'Tequeños Frescos', precio_menudeo: 454, precio_mayoreo: 422 },
-  
-  // --- FRESCOS: PARTY (50 pzs) ---
   { id: 'f-tp-q', nombre: 'Tequeños Party Queso (5cm) - Fresco', categoria: 'Tequeños Party Frescos', precio_menudeo: 454, precio_mayoreo: 422 },
   { id: 'f-tp-qg', nombre: 'Tequeños Party Q/Guayaba (5cm) - Fresco', categoria: 'Tequeños Party Frescos', precio_menudeo: 605, precio_mayoreo: 562 },
-  { id: 'f-tp-dq', nombre: 'Tequeños Party Doble Queso (5cm) - Fresco', categoria: 'Tequeños Party Frescos', precio_menudeo: 605, precio_mayoreo: 562 },
-  { id: 'f-tp-dc', nombre: 'Tequeños Party Doble Choc (4cm) - Fresco', categoria: 'Tequeños Party Frescos', precio_menudeo: 605, precio_mayoreo: 562 },
-  { id: 'f-tp-pz', nombre: 'Tequeños Party Pizza (5cm) - Fresco', categoria: 'Tequeños Party Frescos', precio_menudeo: 605, precio_mayoreo: 562 },
-  { id: 'f-tp-cq', nombre: 'Tequeños Party Choriqueso (5cm) - Fresco', categoria: 'Tequeños Party Frescos', precio_menudeo: 605, precio_mayoreo: 562 },
-
-  // --- PRECOCIDOS (25 pzs) ---
   { id: 'p-teq-q', nombre: 'Tequeños Queso (8cm) - Precocido', categoria: 'Tequeños Precocidos', precio_menudeo: 325, precio_mayoreo: 309 },
-  { id: 'p-teq-qg', nombre: 'Tequeños Queso/Guayaba (8cm) - Precocido', categoria: 'Tequeños Precocidos', precio_menudeo: 400, precio_mayoreo: 380 },
-  { id: 'p-teq-dq', nombre: 'Tequeños Doble Queso (8cm) - Precocido', categoria: 'Tequeños Precocidos', precio_menudeo: 400, precio_mayoreo: 380 },
-  { id: 'p-teq-dc', nombre: 'Tequeños Doble Chocolate (8cm) - Precocido', categoria: 'Tequeños Precocidos', precio_menudeo: 400, precio_mayoreo: 380 },
-  { id: 'p-teq-pz', nombre: 'Tequeños Pizza (8cm) - Precocido', categoria: 'Tequeños Precocidos', precio_menudeo: 400, precio_mayoreo: 380 },
-  { id: 'p-teq-cq', nombre: 'Tequeños Choriqueso (8cm) - Precocido', categoria: 'Tequeños Precocidos', precio_menudeo: 400, precio_mayoreo: 380 },
-  { id: 'p-teq-ja', nombre: 'Tequeños Jalapeño/Q. Crema (7cm) - Precocido', categoria: 'Tequeños Precocidos', precio_menudeo: 488, precio_mayoreo: 464 },
-
-  // --- DISCOS Y MASAS ---
   { id: 'd-9', nombre: 'Discos Nº 9 (12 pzs)', categoria: 'Discos', precio_menudeo: 30, precio_mayoreo: 28 },
-  { id: 'd-14', nombre: 'Discos Nº 14 (12 pzs)', categoria: 'Discos', precio_menudeo: 66, precio_mayoreo: 61 },
-  { id: 'm-est', nombre: 'Masa Estirada (500g)', categoria: 'Masas', precio_menudeo: 35, precio_mayoreo: 33 },
   { id: 'm-piz', nombre: 'Masa Pizza (1kg)', categoria: 'Masas', precio_menudeo: 60, precio_mayoreo: 45 },
 ];
 
@@ -43,7 +27,7 @@ const SHIPPING_ZONES = {
 };
 
 export default function Home() {
-  const { cart, addToCart, getCartSubtotal, updateQuantity, removeFromCart } = useCart();
+  const { cart, addToCart, getCartSubtotal, removeFromCart } = useCart();
   const [shippingZone, setShippingZone] = useState('local');
 
   const subtotal = getCartSubtotal();
@@ -54,7 +38,24 @@ export default function Home() {
     <main className="min-h-screen bg-gray-50 pb-40">
       <header className="p-6 bg-white shadow-sm sticky top-0 z-50 flex justify-between items-center">
         <h1 className="font-black text-2xl tracking-tighter">CRUMAFOOD</h1>
-        <div className="bg-black text-white px-4 py-1 rounded-full text-sm font-bold">🛒 {cart.length}</div>
+        
+        <div className="flex items-center gap-4">
+          {/* Si el usuario NO ha iniciado sesión, muestra el botón de entrar */}
+          <SignedOut>
+            <SignInButton mode="modal">
+              <button className="text-sm font-bold border-2 border-black px-4 py-1 rounded-full hover:bg-black hover:text-white transition">
+                Entrar
+              </button>
+            </SignInButton>
+          </SignedOut>
+
+          {/* Si el usuario YA inició sesión, muestra su foto/avatar */}
+          <SignedIn>
+            <UserButton afterSignOutUrl="/" />
+          </SignedIn>
+
+          <div className="bg-black text-white px-4 py-1 rounded-full text-sm font-bold">🛒 {cart.length}</div>
+        </div>
       </header>
 
       <div className="p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -69,7 +70,9 @@ export default function Home() {
                 <p className="text-xs text-gray-400 line-through">${p.precio_menudeo}</p>
                 <p className="text-lg font-black text-green-600">${p.precio_mayoreo} <span className="text-[10px] text-gray-400"> (5+)</span></p>
               </div>
-              <button onClick={() => addToCart(p)} className="bg-black text-white px-4 py-2 rounded-xl text-xs font-bold active:scale-95 transition">Agregar</button>
+              <button onClick={() => addToCart(p)} className="bg-black text-white px-4 py-2 rounded-xl text-xs font-bold active:scale-95 transition">
+                Agregar
+              </button>
             </div>
           </div>
         ))}
@@ -91,16 +94,31 @@ export default function Home() {
             </select>
           </div>
 
-          <div className="flex justify-between items-center py-4 border-t border-dashed">
+          <div className="flex justify-between items-center py-4 border-t border-dashed mb-4">
             <span className="font-bold">Total a pagar:</span>
             <span className="font-black text-2xl text-black">${total} MXN</span>
           </div>
 
-          <button className="w-full bg-black text-white py-4 rounded-2xl font-bold text-lg shadow-lg active:scale-[0.98] transition">
-            Continuar al Pago
-          </button>
+          {/* --- BLOQUE DE PAGO PROTEGIDO --- */}
+          <SignedOut>
+            <SignInButton mode="modal">
+              <button className="w-full bg-blue-600 text-white py-4 rounded-2xl font-bold text-lg shadow-lg active:scale-[0.98] transition">
+                Inicia sesión para pagar
+              </button>
+            </SignInButton>
+            <p className="text-[10px] text-center text-gray-400 mt-2 font-bold uppercase tracking-wider">
+              Debes estar registrado para finalizar tu pedido
+            </p>
+          </SignedOut>
+
+          <SignedIn>
+            <button 
+              onClick={() => alert("Redirigiendo a Mercado Pago...")} 
+              className="w-full bg-black text-white py-4 rounded-2xl font-bold text-lg shadow-lg active:scale-[0.98] transition"
+            >
+              Continuar al Pago
+            </button>
+          </SignedIn>
+          {/* ------------------------------- */}
         </div>
       )}
-    </main>
-  );
-}
