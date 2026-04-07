@@ -28,6 +28,7 @@ const DS = {
    CATÁLOGO COMPLETO — desde design system v2
 ───────────────────────────────────────────── */
 const CATEGORIES = [
+const CATEGORIES = [
   {
     id: 'tequenos',
     name: 'Tequeños',
@@ -45,7 +46,7 @@ const CATEGORIES = [
     subtitle: 'Ingeniería del Hojaldre',
     emoji: '🥟',
     products: [
-      // Añadido "badge: null" para corregir el error de Vercel
+      // Añadido badge: null para corregir el error de Vercel
       { id: 'disc-9',    nombre: 'Disco p/ Empanada (9 cm)',      badge: null,      menudeo: 30,   mayoreo: 28,  image: '/disco-9.jpg' },
       { id: 'disc-14',   nombre: 'Disco p/ Empanada (14 cm)',     badge: null,      menudeo: 66,   mayoreo: 61,  image: '/disco-14.jpg' }
     ]
