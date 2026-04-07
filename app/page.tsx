@@ -36,10 +36,10 @@ const CATEGORIES = [
     products: [
       { id: 'teq-q-f',   nombre: 'Queso (8 cm) — Fresco',           badge: null,        menudeo: 302, mayoreo: 281 },
       { id: 'teq-q-p',   nombre: 'Queso (8 cm) — Precocido',        badge: null,        menudeo: 322, mayoreo: 300 },
-      { id: 'teq-qg-f',  nombre: 'Queso con Guayaba — Fresco',      badge: 'favorito',  menudeo: 372, mayoreo: 346 },
+      { id: 'teq-qg-f',  nombre: 'Queso con Guayaba — Fresco',      badge: null,        menudeo: 372, mayoreo: 346 },
       { id: 'teq-qg-p',  nombre: 'Queso con Guayaba — Precocido',   badge: null,        menudeo: 392, mayoreo: 365 },
-      { id: 'teq-12-q',  nombre: 'Queso (12 cm) — Fresco',          badge: 'grande',    menudeo: 428, mayoreo: 398 },
-      { id: 'teq-12-qg', nombre: 'Queso con Guayaba (12 cm)',        badge: null,        menudeo: 498, mayoreo: 463 },
+      { id: 'teq-12-q',  nombre: 'Queso (12 cm) — Fresco',          badge: null,        menudeo: 428, mayoreo: 398 },
+      { id: 'teq-12-qg', nombre: 'Queso con Guayaba (12 cm)',       badge: null,        menudeo: 498, mayoreo: 463 },
     ],
   },
   {
@@ -49,11 +49,11 @@ const CATEGORIES = [
     emoji: '🫓',
     products: [
       { id: 'emp-q',   nombre: 'Queso',                badge: null,        menudeo: 446, mayoreo: 415 },
-      { id: 'emp-pq',  nombre: 'Pastor con Queso',     badge: 'mexicano',  menudeo: 512, mayoreo: 476 },
+      { id: 'emp-pq',  nombre: 'Pastor con Queso',     badge: null,        menudeo: 512, mayoreo: 476 },
       { id: 'emp-jq',  nombre: 'Jamón con Queso',      badge: null,        menudeo: 512, mayoreo: 476 },
       { id: 'emp-tq',  nombre: 'Tocino con Queso',     badge: null,        menudeo: 512, mayoreo: 476 },
-      { id: 'emp-chq', nombre: 'Chorizo con Queso',    badge: 'mexicano',  menudeo: 512, mayoreo: 476 },
-      { id: 'emp-pl',  nombre: 'Plátano Macho Queso',  badge: 'mexicano',  menudeo: 512, mayoreo: 476 },
+      { id: 'emp-chq', nombre: 'Chorizo con Queso',    badge: null,        menudeo: 512, mayoreo: 476 },
+      { id: 'emp-pl',  nombre: 'Plátano Macho Queso',  badge: null,        menudeo: 512, mayoreo: 476 },
     ],
   },
   {
@@ -65,9 +65,9 @@ const CATEGORIES = [
       { id: 'me-q',   nombre: 'Queso',                  badge: null,       menudeo: 465, mayoreo: 432 },
       { id: 'me-jq',  nombre: 'Jamón con Queso',        badge: null,       menudeo: 558, mayoreo: 519 },
       { id: 'me-tq',  nombre: 'Tocino con Queso',       badge: null,       menudeo: 558, mayoreo: 519 },
-      { id: 'me-chq', nombre: 'Chorizo con Queso',      badge: 'mexicano', menudeo: 558, mayoreo: 519 },
-      { id: 'me-pq',  nombre: 'Pastor con Queso',       badge: 'mexicano', menudeo: 558, mayoreo: 519 },
-      { id: 'me-pl',  nombre: 'Plátano Macho con Queso',badge: 'mexicano', menudeo: 558, mayoreo: 519 },
+      { id: 'me-chq', nombre: 'Chorizo con Queso',      badge: null,       menudeo: 558, mayoreo: 519 },
+      { id: 'me-pq',  nombre: 'Pastor con Queso',       badge: null,       menudeo: 558, mayoreo: 519 },
+      { id: 'me-pl',  nombre: 'Plátano Macho con Queso',badge: null,       menudeo: 558, mayoreo: 519 },
     ],
   },
   {
@@ -77,7 +77,7 @@ const CATEGORIES = [
     emoji: '⭕',
     products: [
       { id: 'disco-9',  nombre: 'Disco Nº 9 — Estándar', badge: null,       menudeo: 30, mayoreo: 28 },
-      { id: 'disco-14', nombre: 'Disco Nº 14 — Grande',  badge: 'popular',  menudeo: 66, mayoreo: 61 },
+      { id: 'disco-14', nombre: 'Disco Nº 14 — Grande',  badge: null,       menudeo: 66, mayoreo: 61 },
     ],
   },
   {
@@ -87,7 +87,7 @@ const CATEGORIES = [
     emoji: '🫙',
     products: [
       { id: 'masa-estirada', nombre: 'Masa Estirada 500g', badge: null, menudeo: 35, mayoreo: 33 },
-      { id: 'm-piz',         nombre: 'Masa Pizza 1kg',      badge: null, menudeo: 60, mayoreo: 45 },
+      { id: 'm-piz',         nombre: 'Masa Pizza 1kg',     badge: null, menudeo: 60, mayoreo: 45 },
     ],
   },
 ];
