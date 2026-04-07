@@ -34,9 +34,33 @@ const CATEGORIES = [
     subtitle: 'La Firma de Crumafood',
     emoji: '🧀',
     products: [
-      { id: 'teq-q-f',   nombre: 'Queso (8 cm) — Fresco',           badge: null,        menudeo: 302,  mayoreo: 281, image: '/tequeno-queso.jpg' },
-      { id: 'teq-q-p',   nombre: 'Queso (8 cm) — Precocido',       badge: 'Popular',   menudeo: 302,  mayoreo: 281, image: '/tequeno-precocido.jpg' },
-      { id: 'teq-g-q',   nombre: 'Guayaba y Queso (8 cm)',        badge: 'Nuevo',     menudeo: 372,  mayoreo: 346, image: '/tequeno-guayaba.jpg' }
+      { 
+        id: 'teq-q-f',   
+        nombre: 'Queso (8 cm) — Fresco',           
+        description: 'Tequeño artesanal con masa laminada y queso fresco de alta calidad.',
+        badge: null,        
+        menudeo: 302,  
+        mayoreo: 281, 
+        image: '/tequeno-queso.jpg' 
+      },
+      { 
+        id: 'teq-q-p',   
+        nombre: 'Queso (8 cm) — Precocido',       
+        description: 'Listo para disfrutar. Ideal para Air Fryer o fritura rápida con crocancia garantizada.',
+        badge: 'Popular',   
+        menudeo: 302,  
+        mayoreo: 281, 
+        image: '/tequeno-precocido.jpg' 
+      },
+      { 
+        id: 'teq-g-q',   
+        nombre: 'Guayaba y Queso (8 cm)',        
+        description: 'Equilibrio perfecto entre dulce y salado con nuestra receta técnica de masa.',
+        badge: 'Nuevo',     
+        menudeo: 372,  
+        mayoreo: 346, 
+        image: '/tequeno-guayaba.jpg' 
+      }
     ]
   },
   {
@@ -45,9 +69,24 @@ const CATEGORIES = [
     subtitle: 'Ingeniería del Hojaldre',
     emoji: '🥟',
     products: [
-      // Añadido badge: null para corregir el error de Vercel
-      { id: 'disc-9',    nombre: 'Disco p/ Empanada (9 cm)',      badge: null,      menudeo: 30,   mayoreo: 28,  image: '/disco-9.jpg' },
-      { id: 'disc-14',   nombre: 'Disco p/ Empanada (14 cm)',     badge: null,      menudeo: 66,   mayoreo: 61,  image: '/disco-14.jpg' }
+      { 
+        id: 'disc-9',    
+        nombre: 'Disco p/ Empanada (9 cm)',      
+        description: 'Masa técnica hojaldrada diseñada para una fritura seca y crujiente.',
+        badge: null,      
+        menudeo: 30,   
+        mayoreo: 28,  
+        image: '/disco-9.jpg' 
+      },
+      { 
+        id: 'disc-14',   
+        nombre: 'Disco p/ Empanada (14 cm)',     
+        description: 'Diámetro ideal para rellenos abundantes, manteniendo la integridad del laminado.',
+        badge: null,      
+        menudeo: 66,   
+        mayoreo: 61,  
+        image: '/disco-14.jpg' 
+      }
     ]
   }
 ];
