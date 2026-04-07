@@ -27,69 +27,72 @@ const DS = {
 /* ─────────────────────────────────────────────
    CATÁLOGO COMPLETO — desde design system v2
 ───────────────────────────────────────────── */
-const CATEGORIES = [
+
+         const CATEGORIES = [
   {
     id: 'tequenos',
     name: 'Tequeños',
     subtitle: 'La Firma de Crumafood',
     emoji: '🧀',
     products: [
-      { 
-        id: 'teq-q-f',   
-        nombre: 'Queso (8 cm) — Fresco',           
-        description: 'Tequeño artesanal con masa laminada y queso fresco de alta calidad.',
-        badge: null,        
-        menudeo: 302,  
-        mayoreo: 281, 
-        image: '/tequeno-queso.jpg' 
-      },
-      { 
-        id: 'teq-q-p',   
-        nombre: 'Queso (8 cm) — Precocido',       
-        description: 'Listo para disfrutar. Ideal para Air Fryer o fritura rápida con crocancia garantizada.',
-        badge: 'Popular',   
-        menudeo: 302,  
-        mayoreo: 281, 
-        image: '/tequeno-precocido.jpg' 
-      },
-      { 
-        id: 'teq-g-q',   
-        nombre: 'Guayaba y Queso (8 cm)',        
-        description: 'Equilibrio perfecto entre dulce y salado con nuestra receta técnica de masa.',
-        badge: 'Nuevo',     
-        menudeo: 372,  
-        mayoreo: 346, 
-        image: '/tequeno-guayaba.jpg' 
-      }
-    ]
+      { id: 'teq-q-f',   nombre: 'Queso (8 cm) — Fresco',           description: 'Tequeño artesanal con masa laminada y queso fresco.', badge: null,        menudeo: 302, mayoreo: 281, image: '/tequeno-queso.jpg' },
+      { id: 'teq-q-p',   nombre: 'Queso (8 cm) — Precocido',        description: 'Listo para disfrutar. Ideal para Air Fryer o fritura rápida.', badge: 'popular',     menudeo: 322, mayoreo: 300, image: '/tequeno-precocido.jpg' },
+      { id: 'teq-qg-f',  nombre: 'Queso con Guayaba — Fresco',      description: 'Equilibrio perfecto entre dulce y salado.', badge: 'favorito',  menudeo: 372, mayoreo: 346, image: '/tequeno-guayaba.jpg' },
+      { id: 'teq-qg-p',  nombre: 'Queso con Guayaba — Precocido',   description: 'Receta técnica con guayaba premium y queso.', badge: null,        menudeo: 392, mayoreo: 365, image: '/tequeno-guayaba.jpg' },
+      { id: 'teq-12-q',  nombre: 'Queso (12 cm) — Fresco',          description: 'Formato XL para los amantes del queso.', badge: 'grande',    menudeo: 428, mayoreo: 398, image: '/tequeno-grande.jpg' },
+      { id: 'teq-12-qg', nombre: 'Queso con Guayaba (12 cm)',        description: 'La versión definitiva de nuestro clásico.', badge: null,        menudeo: 498, mayoreo: 463, image: '/tequeno-grande.jpg' },
+    ],
+  },
+  {
+    id: 'empanadas',
+    name: 'Empanadas',
+    subtitle: 'Formato Clásico',
+    emoji: '🫓',
+    products: [
+      { id: 'emp-q',   nombre: 'Queso',                description: 'Relleno generoso de queso fundido artesanal.', badge: null,        menudeo: 446, mayoreo: 415, image: '/empanada.jpg' },
+      { id: 'emp-pq',  nombre: 'Pastor con Queso',     description: 'Sabor tradicional mexicano con nuestra masa técnica.', badge: 'mexicano',  menudeo: 512, mayoreo: 476, image: '/empanada.jpg' },
+      { id: 'emp-jq',  nombre: 'Jamón con Queso',      description: 'Un clásico indispensable con ingredientes de calidad.', badge: null,        menudeo: 512, mayoreo: 476, image: '/empanada.jpg' },
+      { id: 'emp-tq',  nombre: 'Tocino con Queso',     description: 'Combinación ahumada y cremosa.', badge: null,        menudeo: 512, mayoreo: 476, image: '/empanada.jpg' },
+      { id: 'emp-chq', nombre: 'Chorizo con Queso',    description: 'Intensidad y textura en cada bocado.', badge: 'mexicano',  menudeo: 512, mayoreo: 476, image: '/empanada.jpg' },
+      { id: 'emp-pl',  nombre: 'Plátano Macho Queso',  description: 'Masa artesanal con el toque dulce del plátano.', badge: 'mexicano',  menudeo: 512, mayoreo: 476, image: '/empanada.jpg' },
+    ],
+  },
+  {
+    id: 'mini',
+    name: 'Mini Empanadas',
+    subtitle: 'Para Compartir',
+    emoji: '🤏',
+    products: [
+      { id: 'me-q',   nombre: 'Queso',                  description: 'Pequeñas en tamaño, grandes en sabor.', badge: null,       menudeo: 465, mayoreo: 432, image: '/mini.jpg' },
+      { id: 'me-jq',  nombre: 'Jamón con Queso',        description: 'Perfectas para eventos y catering.', badge: null,       menudeo: 558, mayoreo: 519, image: '/mini.jpg' },
+      { id: 'me-tq',  nombre: 'Tocino con Queso',       description: 'Bocados crujientes con toque ahumado.', badge: null,       menudeo: 558, mayoreo: 519, image: '/mini.jpg' },
+      { id: 'me-chq', nombre: 'Chorizo con Queso',      description: 'Mini empanadas con carácter.', badge: 'mexicano', menudeo: 558, mayoreo: 519, image: '/mini.jpg' },
+      { id: 'me-pq',  nombre: 'Pastor con Queso',       description: 'La esencia de México en formato mini.', badge: 'mexicano', menudeo: 558, mayoreo: 519, image: '/mini.jpg' },
+      { id: 'me-pl',  nombre: 'Plátano Macho con Queso',description: 'Dulzura técnica en tamaño bocado.', badge: 'mexicano', menudeo: 558, mayoreo: 519, image: '/mini.jpg' },
+    ],
   },
   {
     id: 'discos',
     name: 'Discos de Masa',
-    subtitle: 'Ingeniería del Hojaldre',
-    emoji: '🥟',
+    subtitle: 'Tu Aliado en la Cocina',
+    emoji: '⭕',
     products: [
-      { 
-        id: 'disc-9',    
-        nombre: 'Disco p/ Empanada (9 cm)',      
-        description: 'Masa técnica hojaldrada diseñada para una fritura seca y crujiente.',
-        badge: null,      
-        menudeo: 30,   
-        mayoreo: 28,  
-        image: '/disco-9.jpg' 
-      },
-      { 
-        id: 'disc-14',   
-        nombre: 'Disco p/ Empanada (14 cm)',     
-        description: 'Diámetro ideal para rellenos abundantes, manteniendo la integridad del laminado.',
-        badge: null,      
-        menudeo: 66,   
-        mayoreo: 61,  
-        image: '/disco-14.jpg' 
-      }
-    ]
-  }
+      { id: 'disco-9',  nombre: 'Disco Nº 9 — Estándar', description: 'Masa hojaldrada técnica para fritura seca.', badge: null,       menudeo: 30, mayoreo: 28, image: '/disco-9.jpg' },
+      { id: 'disco-14', nombre: 'Disco Nº 14 — Grande',  description: 'Diámetro ideal para empanadas de alto formato.', badge: 'popular',  menudeo: 66, mayoreo: 61, image: '/disco-14.jpg' },
+    ],
+  },
+  {
+    id: 'masas',
+    name: 'Masas',
+    subtitle: 'Calidad Profesional',
+    emoji: '🫙',
+    products: [
+      { id: 'masa-estirada', nombre: 'Masa Estirada 500g', description: 'Masa técnica lista para moldear tus ideas.', badge: null, menudeo: 35, mayoreo: 33, image: '/masa.jpg' },
+      { id: 'm-piz',         nombre: 'Masa Pizza 1kg',      description: 'Base profesional para pizzas de alta crocancia.', badge: null, menudeo: 60, mayoreo: 45, image: '/masa-pizza.jpg' },
+    ],
+  },
 ];
+  }
 
 const ALL_PRODUCTS = CATEGORIES.flatMap(cat =>
   cat.products.map(p => ({ ...p, categoria: cat.name }))
