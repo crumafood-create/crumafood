@@ -28,7 +28,6 @@ const DS = {
    CATÁLOGO COMPLETO — desde design system v2
 ───────────────────────────────────────────── */
 const CATEGORIES = [
-const CATEGORIES = [
   {
     id: 'tequenos',
     name: 'Tequeños',
