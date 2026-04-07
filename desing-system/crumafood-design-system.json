@@ -1,0 +1,558 @@
+{
+  "brand": {
+    "name": "Crumafood",
+    "tagline": "La Ciencia del Sabor, el Arte de la Masa",
+    "origin": "Fundada por venezolanos, fabricada con orgullo en Toluca, Estado de México",
+    "concept": "Maestro Artesano — El balance perfecto entre la ingeniería del laminado y la tradición del sabor.",
+    "market": "México (B2C y B2B — sector HORECA)",
+    "productLine": "Alimentos congelados premium con cadena de frío garantizada",
+    "mission": "Elevar los estándares de la comida preparada combinando precisión industrial con respeto por la receta artesanal."
+  },
+
+  "designTokens": {
+    "colors": {
+      "primary": {
+        "sand": "#E8DCC8",
+        "sandLight": "#F4EFE6",
+        "sandDark": "#C9B99A"
+      },
+      "secondary": {
+        "pearlGray": "#D6D3CC",
+        "pearlGrayLight": "#EDEDEA",
+        "pearlGrayDark": "#A8A49C"
+      },
+      "accent": {
+        "goldenCrust": "#B8860B",
+        "goldenCrustLight": "#D4A017",
+        "goldenCrustDark": "#8B6508"
+      },
+      "neutral": {
+        "charcoal": "#2C2C2C",
+        "darkGray": "#3E3E3E",
+        "midGray": "#6B6B6B",
+        "lightGray": "#F0EDE8",
+        "white": "#FAFAF8"
+      },
+      "semantic": {
+        "background": "#FAFAF8",
+        "surface": "#F4EFE6",
+        "surfaceElevated": "#FFFFFF",
+        "text": "#2C2C2C",
+        "textSecondary": "#6B6B6B",
+        "border": "#D6D3CC",
+        "highlight": "#B8860B"
+      }
+    },
+
+    "typography": {
+      "fontFamilies": {
+        "display": "'Playfair Display', Georgia, serif",
+        "heading": "'Cormorant Garamond', Georgia, serif",
+        "body": "'Lato', Helvetica, sans-serif",
+        "technical": "'IBM Plex Mono', monospace",
+        "accent": "'Libre Baskerville', Georgia, serif"
+      },
+      "googleFontsUrl": "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Cormorant+Garamond:wght@300;400;600&family=Lato:wght@300;400;700&family=IBM+Plex+Mono:wght@400;500&family=Libre+Baskerville:ital,wght@0,400;1,400&display=swap",
+      "scale": {
+        "hero":     { "size": "clamp(3rem, 7vw, 6rem)",   "lineHeight": "1.05", "letterSpacing": "-0.02em",  "fontFamily": "display",  "weight": "700" },
+        "h1":       { "size": "clamp(2rem, 4vw, 3.5rem)", "lineHeight": "1.1",  "letterSpacing": "-0.015em", "fontFamily": "display",  "weight": "600" },
+        "h2":       { "size": "clamp(1.5rem, 3vw, 2.5rem)","lineHeight": "1.2", "letterSpacing": "-0.01em",  "fontFamily": "heading",  "weight": "600" },
+        "h3":       { "size": "clamp(1.25rem, 2vw, 1.75rem)","lineHeight": "1.3","fontFamily": "heading",    "weight": "400" },
+        "h4":       { "size": "1.25rem",   "lineHeight": "1.4", "fontFamily": "body",      "weight": "700" },
+        "body":     { "size": "1rem",      "lineHeight": "1.7", "fontFamily": "body",      "weight": "300" },
+        "bodyLarge":{ "size": "1.125rem",  "lineHeight": "1.7", "fontFamily": "body",      "weight": "300" },
+        "caption":  { "size": "0.8125rem", "lineHeight": "1.5", "fontFamily": "technical", "weight": "400", "letterSpacing": "0.05em", "textTransform": "uppercase" },
+        "label":    { "size": "0.75rem",   "lineHeight": "1.4", "fontFamily": "technical", "weight": "500", "letterSpacing": "0.1em",  "textTransform": "uppercase" },
+        "price":    { "size": "1.5rem",    "lineHeight": "1.2", "fontFamily": "display",   "weight": "700" }
+      }
+    },
+
+    "spacing": {
+      "base": "8px",
+      "scale": {
+        "xs": "4px", "sm": "8px", "md": "16px", "lg": "24px",
+        "xl": "40px", "2xl": "64px", "3xl": "96px", "4xl": "128px",
+        "section": "clamp(64px, 10vw, 120px)"
+      }
+    },
+
+    "borderRadius": {
+      "none": "0px", "sm": "4px", "md": "8px",
+      "lg": "16px", "xl": "24px", "pill": "999px", "card": "12px"
+    },
+
+    "shadows": {
+      "subtle":  "0 2px 8px rgba(44,44,44,0.06)",
+      "card":    "0 4px 24px rgba(44,44,44,0.10)",
+      "elevated":"0 8px 40px rgba(44,44,44,0.14)",
+      "product": "0 12px 48px rgba(44,44,44,0.18)",
+      "natural": "6px 12px 32px rgba(184,134,11,0.12)"
+    },
+
+    "grid": {
+      "columns": 12,
+      "gap": "24px",
+      "maxWidth": "1280px",
+      "containerPadding": "clamp(16px, 5vw, 80px)",
+      "breakpoints": {
+        "mobile": "0px", "tablet": "768px",
+        "desktop": "1024px", "wide": "1280px"
+      }
+    },
+
+    "motion": {
+      "duration": { "fast": "150ms", "normal": "300ms", "slow": "500ms", "reveal": "800ms" },
+      "easing": {
+        "standard":   "cubic-bezier(0.4, 0, 0.2, 1)",
+        "decelerate": "cubic-bezier(0, 0, 0.2, 1)",
+        "accelerate": "cubic-bezier(0.4, 0, 1, 1)",
+        "artisan":    "cubic-bezier(0.25, 0.46, 0.45, 0.94)"
+      }
+    }
+  },
+
+  "components": {
+
+    "navbar": {
+      "height": "72px",
+      "background": "rgba(250,250,248,0.92)",
+      "backdropFilter": "blur(12px)",
+      "borderBottom": "1px solid #D6D3CC",
+      "position": "sticky",
+      "zIndex": 100,
+      "logo": {
+        "fontFamily": "display", "fontSize": "1.5rem",
+        "fontWeight": "700", "color": "#2C2C2C", "letterSpacing": "-0.02em"
+      },
+      "links": [
+        { "label": "Inicio",      "href": "#home" },
+        { "label": "Nosotros",    "href": "#nosotros" },
+        { "label": "Catálogo",    "href": "#catalogo" },
+        { "label": "Cómo Cocinar","href": "#coccion" },
+        { "label": "Mayoreo",     "href": "#mayoreo" }
+      ],
+      "cta": { "label": "Pedir Ahora", "style": "button-primary", "href": "#contacto" }
+    },
+
+    "buttons": {
+      "primary": {
+        "background": "#2C2C2C", "color": "#FAFAF8", "border": "none",
+        "borderRadius": "4px", "padding": "14px 32px",
+        "fontFamily": "technical", "fontSize": "0.75rem",
+        "letterSpacing": "0.1em", "textTransform": "uppercase", "fontWeight": "500",
+        "hover": { "background": "#B8860B", "transform": "translateY(-2px)", "boxShadow": "0 8px 24px rgba(184,134,11,0.3)" }
+      },
+      "secondary": {
+        "background": "transparent", "color": "#2C2C2C",
+        "border": "1.5px solid #2C2C2C", "borderRadius": "4px", "padding": "13px 30px",
+        "fontFamily": "technical", "fontSize": "0.75rem",
+        "letterSpacing": "0.1em", "textTransform": "uppercase",
+        "hover": { "background": "#2C2C2C", "color": "#FAFAF8" }
+      },
+      "download": {
+        "background": "#B8860B", "color": "#FAFAF8", "border": "none",
+        "borderRadius": "4px", "padding": "14px 32px",
+        "fontFamily": "technical", "fontSize": "0.75rem",
+        "letterSpacing": "0.1em", "textTransform": "uppercase",
+        "display": "flex", "gap": "10px", "alignItems": "center", "icon": "download-cloud"
+      }
+    },
+
+    "cards": {
+      "product": {
+        "background": "#FFFFFF", "borderRadius": "12px",
+        "border": "1px solid #EDEDEA", "boxShadow": "0 4px 24px rgba(44,44,44,0.10)",
+        "overflow": "hidden",
+        "hover": { "transform": "translateY(-6px)", "boxShadow": "0 12px 48px rgba(44,44,44,0.18)" },
+        "imageAspectRatio": "4/3", "imageObjectFit": "cover", "padding": "24px",
+        "structure": ["image", "category-tag", "product-name", "description", "price-block", "cta"]
+      },
+      "feature": {
+        "background": "#F4EFE6", "borderRadius": "12px", "padding": "32px",
+        "structure": ["icon", "number", "title", "description"]
+      },
+      "stat": {
+        "background": "#2C2C2C", "color": "#FAFAF8",
+        "borderRadius": "12px", "padding": "32px 24px", "textAlign": "center"
+      }
+    },
+
+    "priceBlock": {
+      "layout": "grid-2-columns",
+      "strategy": "Efecto Anclaje — Menudeo visible primero, Mayoreo como incentivo de volumen",
+      "columns": ["Menudeo", "Mayoreo"],
+      "style": {
+        "label":  { "fontFamily": "technical", "fontSize": "0.7rem", "letterSpacing": "0.1em", "textTransform": "uppercase", "color": "#6B6B6B" },
+        "price":  { "fontFamily": "display", "fontSize": "1.5rem", "fontWeight": "700", "color": "#2C2C2C" },
+        "unit":   { "fontFamily": "technical", "fontSize": "0.75rem", "color": "#6B6B6B" },
+        "divider": "1px solid #D6D3CC"
+      }
+    },
+
+    "categoryTag": {
+      "background": "#E8DCC8", "color": "#2C2C2C", "borderRadius": "999px",
+      "padding": "4px 12px", "fontFamily": "technical",
+      "fontSize": "0.7rem", "letterSpacing": "0.08em", "textTransform": "uppercase"
+    },
+
+    "badge": {
+      "nuevo":    { "background": "#B8860B", "color": "#FAFAF8" },
+      "popular":  { "background": "#2C2C2C", "color": "#FAFAF8" },
+      "mexicano": { "background": "#6B4C2A", "color": "#FAFAF8" }
+    }
+  },
+
+  "pages": {
+
+    "home": {
+      "id": "home",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero-split",
+          "layout": "text-left | image-right",
+          "background": "#FAFAF8",
+          "minHeight": "100vh",
+          "content": {
+            "eyebrow": { "text": "Toluca, Estado de México", "style": "label" },
+            "headline": "Precisión Maestra,\nSabor que Cruje.",
+            "headlineStyle": "hero",
+            "subheadline": "Diseñamos experiencias sensoriales a través del laminado perfecto y la congelación técnica. Tequeños, empanadas y discos de masa con cadena de frío garantizada.",
+            "cta_primary":   { "label": "Ver Catálogo",      "href": "#catalogo" },
+            "cta_secondary": { "label": "Mayoreo y HORECA",  "href": "#mayoreo" },
+            "image": {
+              "description": "Fotografía hero: tequeños dorados sobre superficie de madera clara con sombras naturales y niebla de vapor",
+              "alt": "Tequeños Crumafood recién preparados",
+              "style": "producto-en-primer-plano, fondo-neutro, iluminacion-natural"
+            }
+          }
+        },
+
+        {
+          "id": "pilares",
+          "type": "feature-grid",
+          "label": "Por qué Crumafood",
+          "headline": "No hay margen de error\nen nuestro crunch.",
+          "layout": "3-columns",
+          "features": [
+            {
+              "icon": "layers",
+              "number": "01",
+              "title": "Ingeniería del Hojaldre",
+              "body": "Laminado de alta elasticidad que garantiza resistencia y un dorado uniforme. Supervisado en nuestra planta propia en Toluca."
+            },
+            {
+              "icon": "snowflake",
+              "number": "02",
+              "title": "Cadena de Frío Estricta",
+              "body": "Congelación instantánea para preservar la frescura de lo recién hecho. Logística optimizada a cualquier parte de México."
+            },
+            {
+              "icon": "building-storefront",
+              "number": "03",
+              "title": "Aliados HORECA",
+              "body": "Formatos, volúmenes y tiempos de cocción diseñados para la alta demanda de hoteles, restaurantes y cafeterías."
+            }
+          ]
+        },
+
+        {
+          "id": "stats-bar",
+          "type": "stats-strip",
+          "background": "#2C2C2C",
+          "stats": [
+            { "value": "25+",    "label": "Sabores disponibles" },
+            { "value": "180°C",  "label": "Temperatura perfecta de fritura" },
+            { "value": "100%",   "label": "Cadena de frío garantizada" },
+            { "value": "Toluca", "label": "Fábrica propia en México" }
+          ]
+        }
+      ]
+    },
+
+    "nosotros": {
+      "id": "nosotros",
+      "sections": [
+        {
+          "id": "historia",
+          "type": "editorial-text",
+          "layout": "text-large-centered",
+          "label": "Nuestra Historia",
+          "headline": "La Ciencia del Sabor,\nel Arte de la Masa.",
+          "body": "En Crumafood, no solo fabricamos alimentos congelados; diseñamos experiencias sensoriales. Como fundadores venezolanos y operadores de nuestra propia planta en Toluca, hemos perfeccionado la técnica del laminado y el punto exacto de congelación para asegurar que cada tequeño y empanada conserve la frescura de lo recién hecho.\n\nNuestra misión es elevar los estándares de la comida preparada, combinando la precisión industrial con el respeto por la receta artesanal. Desde el corazón de nuestra fábrica en el Estado de México, entregamos productos que no solo alimentan, sino que crujen con orgullo.",
+          "pullQuote": "Desde Venezuela con técnica, desde Toluca con orgullo.",
+          "image": {
+            "description": "Interior de planta de producción con trabajadores en uniformes, masa siendo laminada, ambiente profesional y cálido",
+            "alt": "Planta Crumafood en Toluca"
+          }
+        },
+        {
+          "id": "valores",
+          "type": "two-column-values",
+          "headline": "Lo que nos define",
+          "values": [
+            { "title": "Origen Artesanal",    "body": "Nacidos de la tradición venezolana del tequeño, adaptados al paladar mexicano con ingredientes locales de calidad." },
+            { "title": "Control Total",        "body": "Planta propia en Toluca. Supervisamos cada etapa: laminado, relleno, congelación y logística." },
+            { "title": "Innovación Constante", "body": "Sabores de autor que reinventan el clásico: Doble Chocolate, Pizza, Choriqueso y más." },
+            { "title": "Compromiso B2B",       "body": "Socios estratégicos del sector HORECA. Calidad constante para quienes exigen consistencia en cada servicio." }
+          ]
+        }
+      ]
+    },
+
+    "catalogo": {
+      "id": "catalogo",
+      "label": "Catálogo de Productos",
+      "headline": "Cada Producto,\nUna Experiencia.",
+      "subheadline": "Todos los productos se entregan congelados con cadena de frío garantizada. Cocina directo del congelador, sin descongelar.",
+      "pricingStrategy": "Efecto Anclaje — Menudeo visible primero, Mayoreo como incentivo de volumen",
+      "currency": "MXN",
+      "filterBar": {
+        "enabled": true,
+        "filters": ["Todos", "Tequeños", "Tequeños Party", "Empanadas", "Mini Empanadas", "Discos", "Masas"]
+      },
+
+      "categories": [
+        {
+          "id": "tequenos-tradicional",
+          "name": "Tequeños",
+          "subtitle": "El Corazón de Crumafood",
+          "description": "Masa crujiente que resguarda un relleno generoso. Nuestra medida estándar de 8cm, perfecta para el amante del queso. Congelados en su punto exacto para que crucen como recién hechos.",
+          "size": "8cm",
+          "unit": "Paquete de 25 piezas",
+          "products": [
+            { "id": "tq-queso",         "name": "Queso",             "badge": null,      "menudeo": 302, "mayoreo": 281 },
+            { "id": "tq-queso-guayaba", "name": "Queso con Guayaba", "badge": "popular", "menudeo": 372, "mayoreo": 346 },
+            { "id": "tq-doble-choco",   "name": "Doble Chocolate",   "badge": "nuevo",   "menudeo": 372, "mayoreo": 346 },
+            { "id": "tq-pizza",         "name": "Pizza",             "badge": null,      "menudeo": 372, "mayoreo": 346 },
+            { "id": "tq-choriqueso",    "name": "Choriqueso",        "badge": null,      "menudeo": 372, "mayoreo": 346 }
+          ]
+        },
+
+        {
+          "id": "tequenos-party",
+          "name": "Tequeños Party",
+          "subtitle": "El Alma de Cualquier Celebración",
+          "description": "Diseñados para ser devorados en un bocado. El formato ideal para eventos, reuniones y celebraciones donde la experiencia importa tanto como el sabor.",
+          "size": "5cm",
+          "unit": "Paquete de 50 piezas",
+          "note": "Doble Chocolate disponible en formato 4cm",
+          "products": [
+            { "id": "tp-queso",         "name": "Queso",             "badge": null,      "menudeo": 454, "mayoreo": 422 },
+            { "id": "tp-queso-guayaba", "name": "Queso con Guayaba", "badge": "popular", "menudeo": 605, "mayoreo": 562 },
+            { "id": "tp-doble-choco",   "name": "Doble Chocolate (4cm)", "badge": "nuevo","menudeo": 605, "mayoreo": 562 },
+            { "id": "tp-pizza",         "name": "Pizza",             "badge": null,      "menudeo": 605, "mayoreo": 562 },
+            { "id": "tp-choriqueso",    "name": "Choriqueso",        "badge": null,      "menudeo": 605, "mayoreo": 562 }
+          ]
+        },
+
+        {
+          "id": "empanadas",
+          "name": "Empanadas",
+          "subtitle": "Tradición en Cada Capa",
+          "description": "Masa de alta resistencia con cierre perfecto. Rellenos universales y sabores favoritos mexicanos para todos los gustos y ocasiones.",
+          "size": "Estándar",
+          "unit": "Paquete de 25 piezas",
+          "flavorGroups": {
+            "universales": ["Queso", "Jamón con Queso", "Tocino con Queso"],
+            "mexicanos":   ["Chorizo con Queso", "Pastor con Queso", "Plátano Macho con Queso"]
+          },
+          "products": [
+            { "id": "em-queso",        "name": "Queso",                 "badge": null,       "menudeo": 446, "mayoreo": 415 },
+            { "id": "em-jamon",        "name": "Jamón con Queso",       "badge": null,       "menudeo": 512, "mayoreo": 476 },
+            { "id": "em-tocino",       "name": "Tocino con Queso",      "badge": null,       "menudeo": 512, "mayoreo": 476 },
+            { "id": "em-chorizo",      "name": "Chorizo con Queso",     "badge": "mexicano", "menudeo": 512, "mayoreo": 476 },
+            { "id": "em-pastor",       "name": "Pastor con Queso",      "badge": "mexicano", "menudeo": 512, "mayoreo": 476 },
+            { "id": "em-platano",      "name": "Plátano Macho con Queso","badge": "mexicano","menudeo": 512, "mayoreo": 476 }
+          ]
+        },
+
+        {
+          "id": "mini-empanadas",
+          "name": "Mini Empanadas",
+          "subtitle": "Bocados de Tradición",
+          "description": "Toda la tradición en formato mini. Perfectas para eventos, aperitivos y buffets. Los mismos sabores que amas, en el tamaño que enamora.",
+          "size": "Mini",
+          "unit": "Paquete de 50 piezas",
+          "products": [
+            { "id": "me-queso",   "name": "Queso",                  "badge": null,       "menudeo": 465, "mayoreo": 432 },
+            { "id": "me-jamon",   "name": "Jamón con Queso",        "badge": null,       "menudeo": 558, "mayoreo": 519 },
+            { "id": "me-tocino",  "name": "Tocino con Queso",       "badge": null,       "menudeo": 558, "mayoreo": 519 },
+            { "id": "me-chorizo", "name": "Chorizo con Queso",      "badge": "mexicano", "menudeo": 558, "mayoreo": 519 },
+            { "id": "me-pastor",  "name": "Pastor con Queso",       "badge": "mexicano", "menudeo": 558, "mayoreo": 519 },
+            { "id": "me-platano", "name": "Plátano Macho con Queso","badge": "mexicano", "menudeo": 558, "mayoreo": 519 }
+          ]
+        },
+
+        {
+          "id": "discos",
+          "name": "Discos de Masa",
+          "subtitle": "Tu Aliado en la Cocina",
+          "description": "Masa de alta elasticidad con tecnología de capas. No absorbe exceso de grasa. Resalta el laminado hojaldrado en cada preparación.",
+          "unit": "Empaque de 12 piezas",
+          "products": [
+            { "id": "disco-9",  "name": "Disco Nº 9",  "note": "Tamaño estándar", "badge": null,      "menudeo": 30, "mayoreo": 28 },
+            { "id": "disco-14", "name": "Disco Nº 14", "note": "Tamaño grande",   "badge": "popular", "menudeo": 66, "mayoreo": 61 }
+          ]
+        },
+
+        {
+          "id": "masas",
+          "name": "Masas",
+          "subtitle": "Calidad Profesional para tus Creaciones",
+          "description": "Masa estirada lista para usar en tequeños, empanadas, buñuelos y más. Calidad de planta disponible para tus propias recetas.",
+          "products": [
+            {
+              "id": "masa-estirada",
+              "name": "Masa Estirada",
+              "note": "Para tequeños, empanadas, buñuelos, etc.",
+              "unit": "Empaque 500g",
+              "badge": null,
+              "menudeo": 35,
+              "mayoreo": 33
+            }
+          ]
+        }
+      ]
+    },
+
+    "coccion": {
+      "id": "coccion",
+      "label": "Instrucciones de Cocción",
+      "headline": "El Ritual del Crunch.",
+      "subheadline": "Del frío al fuego: sin descongelación previa para asegurar la integridad de la masa.",
+      "steps": [
+        {
+          "id": "step-1",
+          "number": "01",
+          "icon": "snowflake",
+          "title": "Sin Descongelación Previa",
+          "body": "Saca los productos directamente del congelador. La temperatura fría es lo que asegura la integridad de la masa y la estructura del relleno durante la cocción."
+        },
+        {
+          "id": "step-2",
+          "number": "02",
+          "icon": "flame",
+          "title": "La Temperatura Ideal",
+          "body": "Elige tu método y aplica la temperatura exacta para un dorado uniforme.",
+          "variants": [
+            { "method": "Fritura",   "icon": "fire", "temp": "180°C", "time": "Hasta dorado uniforme" },
+            { "method": "Air Fryer", "icon": "wind", "temp": "200°C", "time": "8–10 minutos + rocío de aceite" }
+          ]
+        },
+        {
+          "id": "step-3",
+          "number": "03",
+          "icon": "clock",
+          "title": "El Reposo Crítico",
+          "body": "2 minutos de reposo sobre rejilla (no papel) para que el vapor escape y la masa alcance su máxima crocancia. Este paso hace la diferencia entre bueno y extraordinario.",
+          "highlight": "2 min sobre rejilla = crocancia máxima"
+        }
+      ]
+    },
+
+    "mayoreo": {
+      "id": "mayoreo",
+      "label": "Venta al Mayor",
+      "headline": "Socio Estratégico\npara su Negocio.",
+      "subheadline": "¿Busca un proveedor que entienda de consistencia? Soluciones a gran escala para hoteles, restaurantes y distribuidores.",
+      "body": "Calidad constante, empaques resistentes al congelador y soporte logístico nacional. Entendemos que en el sector HORECA, la confiabilidad del proveedor es tan importante como el sabor del producto.",
+      "horecaDefinition": "HORECA: Hoteles, Restaurantes y Cafeterías",
+      "valueProps": [
+        { "icon": "check-circle", "text": "Calidad estandarizada en cada entrega" },
+        { "icon": "package",      "text": "Empaques resistentes al congelador" },
+        { "icon": "truck",        "text": "Soporte logístico nacional" },
+        { "icon": "clock",        "text": "Tiempos de cocción para alta demanda" },
+        { "icon": "chart-bar",    "text": "Formatos y volúmenes a medida" }
+      ],
+      "targetClients": [
+        { "icon": "building-office", "label": "Hoteles" },
+        { "icon": "utensils",        "label": "Restaurantes" },
+        { "icon": "store",           "label": "Distribuidores" },
+        { "icon": "party-popper",    "label": "Catering y Eventos" }
+      ],
+      "cta": {
+        "primary": {
+          "label": "Descargar Catálogo PDF",
+          "style": "download",
+          "icon": "download-cloud",
+          "href": "/catalogo-crumafood.pdf",
+          "note": "Incluye precios de mayoreo y fichas técnicas"
+        },
+        "secondary": {
+          "label": "Contactar a un Asesor",
+          "style": "secondary",
+          "href": "#contacto"
+        }
+      }
+    },
+
+    "contacto": {
+      "id": "contacto",
+      "label": "Contacto",
+      "headline": "Hablemos de Calidad.",
+      "fields": [
+        { "id": "nombre",   "type": "text",     "label": "Nombre completo",        "required": true },
+        { "id": "negocio",  "type": "text",      "label": "Empresa / Negocio (HORECA)", "required": false },
+        { "id": "email",    "type": "email",    "label": "Correo electrónico",     "required": true },
+        { "id": "whatsapp", "type": "tel",      "label": "WhatsApp",               "required": true },
+        { "id": "perfil",   "type": "select",   "label": "Perfil de interés",
+          "options": ["Compra personal (Menudeo)", "Negocio HORECA (Mayoreo)", "Distribuidor"],
+          "required": true },
+        { "id": "mensaje",  "type": "textarea", "label": "¿En qué podemos ayudarte?", "required": false }
+      ],
+      "cta": { "label": "Enviar Mensaje", "style": "primary" },
+      "location": {
+        "city": "Toluca", "state": "Estado de México", "country": "México",
+        "displayText": "Fabricado en Toluca, Estado de México"
+      }
+    }
+  },
+
+  "footer": {
+    "brand": "Crumafood",
+    "tagline": "La Ciencia del Sabor, el Arte de la Masa.",
+    "location": "Toluca, Estado de México, México",
+    "links": [
+      { "label": "Inicio",    "href": "#home" },
+      { "label": "Catálogo",  "href": "#catalogo" },
+      { "label": "Mayoreo",   "href": "#mayoreo" },
+      { "label": "Contacto",  "href": "#contacto" }
+    ],
+    "legal": "© 2025 Crumafood. Todos los derechos reservados.",
+    "background": "#2C2C2C",
+    "color": "#FAFAF8"
+  },
+
+  "seo": {
+    "siteName": "Crumafood",
+    "title": "Crumafood — Maestro Artesano en Alimentos Congelados | Toluca, México",
+    "description": "Tequeños, empanadas y discos de masa congelados premium. Cadena de frío garantizada. Proveedor HORECA en México. Planta propia en Toluca, Estado de México.",
+    "keywords": ["tequeños congelados México", "empanadas congeladas mayoreo", "proveedor HORECA México", "discos de masa", "Crumafood", "Toluca"],
+    "og": { "type": "website", "image": "/og-crumafood.jpg" }
+  },
+
+  "photographyGuidelines": {
+    "concept": "Wild Fork Precision + La Salteña Soul",
+    "style": "Limpio, técnico, con calidez artesanal",
+    "backgrounds": ["Madera clara", "Mármol arena", "Piedra gris neutra"],
+    "lighting": "Natural lateral, sombras suaves y definidas",
+    "angles": [
+      "Vista aérea 45°",
+      "Primer plano textura de masa / laminado",
+      "Cross-section (corte mostrando relleno fundido)",
+      "Producto crudo enfocando capas de hojaldre"
+    ],
+    "keyVisuals": [
+      "Corte transversal mostrando el relleno fundido",
+      "Producto crudo enfocando el laminado técnico",
+      "Sombras naturales y definidas para volumen realista"
+    ],
+    "avoid": ["Fondos oscuros dramáticos", "Filtros saturados", "Emplatado recargado"],
+    "references": {
+      "discos":    "Resaltar capas hojaldradas — inspiración La Salteña Hojaldrada",
+      "tequenos":  "Fondo limpio, producto listo para comer — inspiración Wild Fork Foods",
+      "empanadas": "Mostrar textura de masa y relleno en corte"
+    }
+  }
+            }
