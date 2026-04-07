@@ -92,7 +92,7 @@ const DS = {
     ],
   },
 ];
-  }
+  
 
 const ALL_PRODUCTS = CATEGORIES.flatMap(cat =>
   cat.products.map(p => ({ ...p, categoria: cat.name }))
