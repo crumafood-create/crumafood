@@ -548,17 +548,21 @@ export default function Home() {
               <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.55rem', letterSpacing: '0.2em', color: DS.colors.midGray, textTransform: 'uppercase' as const, marginBottom: '8px' }}>Catálogo</p>
               {categoryNames.map(cat => (
                 <button
-                  key={cat}
-                  onClick={() => { setActiveCategory(cat); setIsMenuOpen(false); }}
-                  style={{
-                    textAlign: 'left' as const, background: 'none', border: 'none', cursor: 'pointer',
-                    padding: '10px 12px', borderRadius: '6px',
-                    fontFamily: "'Cormorant Garamond', Georgia, serif",
-                    fontSize: '1.3rem', fontWeight: activeCategory === cat ? 600 : 400,
-                    color: activeCategory === cat ? DS.colors.golden : DS.colors.charcoal,
-                    background: activeCategory === cat ? DS.colors.sandLight : 'transparent',
-                    transition: 'all 150ms',
-                  }}
+  key={cat}
+  onClick={() => { setActiveCategory(cat); setIsMenuOpen(false); }}
+  style={{
+    textAlign: 'left' as const, 
+    border: 'none', 
+    cursor: 'pointer',
+    padding: '10px 12px', 
+    borderRadius: '6px',
+    fontFamily: "'Cormorant Garamond', Georgia, serif",
+    fontSize: '1.3rem', 
+    fontWeight: activeCategory === cat ? 600 : 400,
+    color: activeCategory === cat ? DS.colors.golden : DS.colors.charcoal,
+    background: activeCategory === cat ? DS.colors.sandLight : 'transparent',
+    transition: 'all 150ms',
+  }}>
                 >
                   {cat}
                 </button>
