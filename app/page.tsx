@@ -33,14 +33,46 @@ const CATEGORIES = [
     name: 'Tequeños',
     subtitle: 'La Firma de Crumafood',
     emoji: '🧀',
-    products: [
-      { id: 'teq-q-f',   nombre: 'Queso (8 cm) — Fresco',           description: 'Tequeño artesanal con masa laminada y queso fresco.', badge: null,        menudeo: 302, mayoreo: 281, image: '/tequeno-queso.jpg' },
-      { id: 'teq-q-p',   nombre: 'Queso (8 cm) — Precocido',        description: 'Listo para disfrutar. Ideal para Air Fryer o fritura rápida.', badge: 'popular',     menudeo: 322, mayoreo: 300, image: '/tequeno-precocido.jpg' },
-      { id: 'teq-qg-f',  nombre: 'Queso con Guayaba — Fresco',      description: 'Equilibrio perfecto entre dulce y salado.', badge: 'favorito',  menudeo: 372, mayoreo: 346, image: '/tequeno-guayaba.jpg' },
-      { id: 'teq-qg-p',  nombre: 'Queso con Guayaba — Precocido',   description: 'Receta técnica con guayaba premium y queso.', badge: null,        menudeo: 392, mayoreo: 365, image: '/tequeno-guayaba.jpg' },
-      { id: 'teq-12-q',  nombre: 'Queso (12 cm) — Fresco',          description: 'Formato XL para los amantes del queso.', badge: 'grande',    menudeo: 428, mayoreo: 398, image: '/tequeno-grande.jpg' },
-      { id: 'teq-12-qg', nombre: 'Queso con Guayaba (12 cm)',        description: 'La versión definitiva de nuestro clásico.', badge: null,        menudeo: 498, mayoreo: 463, image: '/tequeno-grande.jpg' },
+    subcategories: [
+      { 
+        name: 'Línea Tradicional', 
+        description: 'Nuestra medida estándar (8cm). Una masa crujiente que resguarda un relleno generoso de queso fresco.',
+        productIds: ['teq-q-f', 'teq-q-p'] 
+      },
+      { 
+        name: 'Línea Sabores de Autor', 
+        description: 'Reinventamos el clásico de 8cm para paladares extraordinarios.',
+        productIds: ['teq-piz-f', 'teq-piz-p', 'teq-choc-f', 'teq-choc-p', 'teq-guay-f', 'teq-guay-p'] 
+      },
+      { 
+        name: 'Línea Party', 
+        description: 'El alma de cualquier celebración (5cm). Diseñados para ser devorados en un bocado.',
+        productIds: ['party-q-f', 'party-q-p', 'party-piz-f', 'party-piz-p', 'party-choc-f', 'party-choc-p', 'party-guay-f', 'party-guay-p'] 
+      }
     ],
+    products: [
+      // TRADICIONAL 8CM
+      { id: 'teq-q-f', nombre: 'Queso (8cm) — Fresco', menudeo: 302, mayoreo: 281, description: 'Masa técnica y queso fresco.' },
+      { id: 'teq-q-p', nombre: 'Queso (8cm) — Precocido', menudeo: 322, mayoreo: 300, description: 'Listo para Air Fryer.' },
+      
+      // AUTOR 8CM
+      { id: 'teq-piz-f', nombre: 'Pizza (8cm) — Fresco', menudeo: 350, mayoreo: 320, description: 'Salsa pomodoro y queso fundido.' },
+      { id: 'teq-piz-p', nombre: 'Pizza (8cm) — Precocido', menudeo: 370, mayoreo: 340, description: 'Sabor italiano al instante.' },
+      { id: 'teq-choc-f', nombre: 'Doble Chocolate (8cm) — Fresco', menudeo: 380, mayoreo: 350, description: 'Relleno de chocolate premium.' },
+      { id: 'teq-choc-p', nombre: 'Doble Chocolate (8cm) — Precocido', menudeo: 400, mayoreo: 370, description: 'Ideal como postre rápido.' },
+      { id: 'teq-guay-f', nombre: 'Guayaba y Queso (8cm) — Fresco', menudeo: 372, mayoreo: 346, description: 'Dulce y salado artesanal.' },
+      { id: 'teq-guay-p', nombre: 'Guayaba y Queso (8cm) — Precocido', menudeo: 392, mayoreo: 365, description: 'El balance perfecto.' },
+
+      // PARTY 5CM (Tradicional y Autor mezclados en el listado, pero separados por el subcategory)
+      { id: 'party-q-f', nombre: 'Party Queso (5cm) — Fresco', menudeo: 210, mayoreo: 190, description: 'Mini tradicional.' },
+      { id: 'party-q-p', nombre: 'Party Queso (5cm) — Precocido', menudeo: 230, mayoreo: 210, description: 'Mini listo.' },
+      { id: 'party-piz-f', nombre: 'Party Pizza (5cm) — Fresco', menudeo: 240, mayoreo: 220, description: 'Mini pizza bite.' },
+      { id: 'party-piz-p', nombre: 'Party Pizza (5cm) — Precocido', menudeo: 260, mayoreo: 240, description: 'Bocado de pizza.' },
+      { id: 'party-choc-f', nombre: 'Party Chocolate (5cm) — Fresco', menudeo: 250, mayoreo: 230, description: 'Mini postre.' },
+      { id: 'party-choc-p', nombre: 'Party Chocolate (5cm) — Precocido', menudeo: 270, mayoreo: 250, description: 'Chocolate instantáneo.' },
+      { id: 'party-guay-f', nombre: 'Party Guayaba (5cm) — Fresco', menudeo: 240, mayoreo: 220, description: 'Mini guayaba.' },
+      { id: 'party-guay-p', nombre: 'Party Guayaba (5cm) — Precocido', menudeo: 260, mayoreo: 240, description: 'Bocado dulce.' },
+    ]
   },
   {
     id: 'empanadas',
