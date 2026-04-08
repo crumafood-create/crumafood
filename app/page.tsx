@@ -27,8 +27,7 @@ const DS = {
 /* ─────────────────────────────────────────────
    CATÁLOGO COMPLETO — desde design system v2
 ───────────────────────────────────────────── */
-
-         const CATEGORIES = [
+const CATEGORIES = [
   {
     id: 'tequenos',
     name: 'Tequeños',
@@ -63,12 +62,12 @@ const DS = {
     subtitle: 'Para Compartir',
     emoji: '🤏',
     products: [
-      { id: 'me-q',   nombre: 'Queso',                  description: 'Pequeñas en tamaño, grandes en sabor.', badge: null,       menudeo: 465, mayoreo: 432, image: '/mini.jpg' },
-      { id: 'me-jq',  nombre: 'Jamón con Queso',        description: 'Perfectas para eventos y catering.', badge: null,       menudeo: 558, mayoreo: 519, image: '/mini.jpg' },
-      { id: 'me-tq',  nombre: 'Tocino con Queso',       description: 'Bocados crujientes con toque ahumado.', badge: null,       menudeo: 558, mayoreo: 519, image: '/mini.jpg' },
-      { id: 'me-chq', nombre: 'Chorizo con Queso',      description: 'Mini empanadas con carácter.', badge: 'mexicano', menudeo: 558, mayoreo: 519, image: '/mini.jpg' },
-      { id: 'me-pq',  nombre: 'Pastor con Queso',       description: 'La esencia de México en formato mini.', badge: 'mexicano', menudeo: 558, mayoreo: 519, image: '/mini.jpg' },
-      { id: 'me-pl',  nombre: 'Plátano Macho con Queso',description: 'Dulzura técnica en tamaño bocado.', badge: 'mexicano', menudeo: 558, mayoreo: 519, image: '/mini.jpg' },
+      { id: 'me-q',   nombre: 'Queso',                   description: 'Pequeñas en tamaño, grandes en sabor.', badge: null,       menudeo: 465, mayoreo: 432, image: '/mini.jpg' },
+      { id: 'me-jq',  nombre: 'Jamón con Queso',         description: 'Perfectas para eventos y catering.', badge: null,       menudeo: 558, mayoreo: 519, image: '/mini.jpg' },
+      { id: 'me-tq',  nombre: 'Tocino con Queso',        description: 'Bocados crujientes con toque ahumado.', badge: null,       menudeo: 558, mayoreo: 519, image: '/mini.jpg' },
+      { id: 'me-chq', nombre: 'Chorizo con Queso',       description: 'Mini empanadas con carácter.', badge: 'mexicano', menudeo: 558, mayoreo: 519, image: '/mini.jpg' },
+      { id: 'me-pq',  nombre: 'Pastor con Queso',        description: 'La esencia de México en formato mini.', badge: 'mexicano', menudeo: 558, mayoreo: 519, image: '/mini.jpg' },
+      { id: 'me-pl',  nombre: 'Plátano Macho con Queso', description: 'Dulzura técnica en tamaño bocado.', badge: 'mexicano', menudeo: 558, mayoreo: 519, image: '/mini.jpg' },
     ],
   },
   {
@@ -77,8 +76,8 @@ const DS = {
     subtitle: 'Tu Aliado en la Cocina',
     emoji: '⭕',
     products: [
-      { id: 'disco-9',  nombre: 'Disco Nº 9 — Estándar', description: 'Masa hojaldrada técnica para fritura seca.', badge: null,       menudeo: 30, mayoreo: 28, image: '/disco-9.jpg' },
-      { id: 'disco-14', nombre: 'Disco Nº 14 — Grande',  description: 'Diámetro ideal para empanadas de alto formato.', badge: 'popular',  menudeo: 66, mayoreo: 61, image: '/disco-14.jpg' },
+      { id: 'disco-9',  nombre: 'Disco Nº 9 — Estándar', description: 'Masa hojaldrada técnica para fritura seca.', badge: null,      menudeo: 30, mayoreo: 28, image: '/disco-9.jpg' },
+      { id: 'disco-14', nombre: 'Disco Nº 14 — Grande',  description: 'Diámetro ideal para empanadas de alto formato.', badge: 'popular', menudeo: 66, mayoreo: 61, image: '/disco-14.jpg' },
     ],
   },
   {
@@ -92,7 +91,6 @@ const DS = {
     ],
   },
 ];
-  
 
 const ALL_PRODUCTS = CATEGORIES.flatMap(cat =>
   cat.products.map(p => ({ ...p, categoria: cat.name }))
@@ -103,10 +101,10 @@ const ALL_PRODUCTS = CATEGORIES.flatMap(cat =>
 ───────────────────────────────────────────── */
 function Badge({ label }: { label: string }) {
   const colors: Record<string, { bg: string; color: string }> = {
-    favorito:  { bg: DS.colors.golden,    color: DS.colors.white },
-    mexicano:  { bg: DS.colors.sandDark,  color: DS.colors.charcoal },
-    popular:   { bg: DS.colors.charcoal,  color: DS.colors.white },
-    grande:    { bg: DS.colors.surface,   color: DS.colors.charcoal },
+    favorito: { bg: DS.colors.golden,   color: DS.colors.white },
+    mexicano: { bg: DS.colors.sandDark, color: DS.colors.charcoal },
+    popular:  { bg: DS.colors.charcoal, color: DS.colors.white },
+    grande:   { bg: DS.colors.surface,  color: DS.colors.charcoal },
   };
   const style = colors[label] ?? { bg: DS.colors.sand, color: DS.colors.charcoal };
   return (
@@ -132,25 +130,27 @@ function Badge({ label }: { label: string }) {
 function ProductCard({ product, onAdd }: { product: typeof ALL_PRODUCTS[0]; onAdd: () => void }) {
   const [pressed, setPressed] = useState(false);
   return (
-    <div style={{
-      background: DS.colors.white,
-      border: `1px solid ${DS.colors.border}`,
-      borderRadius: '12px',
-      padding: '20px',
-      boxShadow: '0 4px 24px rgba(44,44,44,0.08)',
-      transition: 'transform 300ms cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 300ms',
-      display: 'flex',
-      flexDirection: 'column' as const,
-      gap: '12px',
-    }}
-    onMouseEnter={e => {
-      (e.currentTarget as HTMLDivElement).style.transform = 'translateY(-4px)';
-      (e.currentTarget as HTMLDivElement).style.boxShadow = '0 12px 48px rgba(44,44,44,0.16)';
-    }}
-    onMouseLeave={e => {
-      (e.currentTarget as HTMLDivElement).style.transform = 'translateY(0)';
-      (e.currentTarget as HTMLDivElement).style.boxShadow = '0 4px 24px rgba(44,44,44,0.08)';
-    }}>
+    <div
+      style={{
+        background: DS.colors.white,
+        border: `1px solid ${DS.colors.border}`,
+        borderRadius: '12px',
+        padding: '20px',
+        boxShadow: '0 4px 24px rgba(44,44,44,0.08)',
+        transition: 'transform 300ms cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 300ms',
+        display: 'flex',
+        flexDirection: 'column' as const,
+        gap: '12px',
+      }}
+      onMouseEnter={e => {
+        (e.currentTarget as HTMLDivElement).style.transform = 'translateY(-4px)';
+        (e.currentTarget as HTMLDivElement).style.boxShadow = '0 12px 48px rgba(44,44,44,0.16)';
+      }}
+      onMouseLeave={e => {
+        (e.currentTarget as HTMLDivElement).style.transform = 'translateY(0)';
+        (e.currentTarget as HTMLDivElement).style.boxShadow = '0 4px 24px rgba(44,44,44,0.08)';
+      }}
+    >
       {/* Category + Badge */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <span style={{
@@ -249,8 +249,8 @@ function ProductCard({ product, onAdd }: { product: typeof ALL_PRODUCTS[0]; onAd
 function CoccionSection() {
   const steps = [
     { num: '01', icon: <Snowflake size={20} />, title: 'Sin Descongelación', body: 'Directo del congelador al aceite. El frío preserva la estructura de la masa.' },
-    { num: '02', icon: <Flame size={20} />,    title: 'Temperatura Exacta',  body: 'Fritura: 180°C hasta dorado uniforme. Air fryer: 200°C por 8–10 min + rocío de aceite.' },
-    { num: '03', icon: <Clock size={20} />,    title: '2 Min en Rejilla',    body: '2 minutos de reposo sobre rejilla (no papel). El vapor escapa y la masa alcanza máxima crocancia.' },
+    { num: '02', icon: <Flame size={20} />,     title: 'Temperatura Exacta',  body: 'Fritura: 180°C hasta dorado uniforme. Air fryer: 200°C por 8–10 min + rocío de aceite.' },
+    { num: '03', icon: <Clock size={20} />,     title: '2 Min en Rejilla',    body: '2 minutos de reposo sobre rejilla (no papel). El vapor escapa y la masa alcanza máxima crocancia.' },
   ];
   return (
     <section id="coccion" style={{ padding: '64px 16px', background: DS.colors.charcoal }}>
@@ -287,103 +287,25 @@ function CoccionSection() {
 export default function Home() {
   const { cart, addToCart, getCartSubtotal } = useCart();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeCategoryData.products
-  .filter(p => {
-    const isFresco = p.nombre.toLowerCase().includes('fresco');
-    const isPrecocido = p.nombre.toLowerCase().includes('precocido');
-    
-    // Si elegimos "Crudos", mostramos lo que no sea precocido
-    if (prepMode === 'fresco') return !isPrecocido;
-    // Si elegimos "Precocidos", mostramos lo que no sea fresco
-    if (prepMode === 'precocido') return !isFresco;
-    return true;
-  })
-  .map((product) => (
-    <ProductCard key={product.id} product={product} />
-  ))
-]
+  const [activeCategory, setActiveCategory] = useState('Todos');
   const [searchTerm, setSearchTerm] = useState('');
+  const [prepMode, setPrepMode] = useState<'fresco' | 'precocido'>('fresco');
 
   const categoryNames = ['Todos', ...CATEGORIES.map(c => c.name)];
-}}>
-const [prepMode, setPrepMode] = useState<'fresco' | 'precocido'>('fresco');
-<div style={{
-  display: 'flex',
-  flexDirection: 'column' as const,
-  alignItems: 'center',
-  marginBottom: '40px',
-  gap: '12px'
-  <div style={{
-    display: 'flex',
-    background: DS.colors.lightGray,
-    padding: '4px',
-    borderRadius: '14px',
-    border: `1px solid ${DS.colors.border}`,
-    position: 'relative',
-    width: '280px',
-    height: '48px'
-  }}>
-    {/* Fondo Deslizable (Indicador) */}
-    <div style={{
-      position: 'absolute',
-      top: '4px',
-      bottom: '4px',
-      left: prepMode === 'fresco' ? '4px' : '50%',
-      width: 'calc(50% - 4px)',
-      background: DS.colors.golden,
-      borderRadius: '10px',
-      transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-      zIndex: 1,
-      boxShadow: '0 2px 8px rgba(184, 134, 11, 0.2)'
-    }} />
 
-    {/* Opción: Fresco */}
-    <button
-      onClick={() => setPrepMode('fresco')}
-      style={{
-        flex: 1, border: 'none', background: 'none', cursor: 'pointer', zIndex: 2,
-        display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px',
-        fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.65rem', fontWeight: 600,
-        color: prepMode === 'fresco' ? DS.colors.white : DS.colors.midGray,
-        transition: 'color 0.3s', textTransform: 'uppercase' as const, letterSpacing: '0.05em'
-      }}
-    >
-      <Snowflake size={14} /> Crudos
-    </button>
-
-    {/* Opción: Precocido */}
-    <button
-      onClick={() => setPrepMode('precocido')}
-      style={{
-        flex: 1, border: 'none', background: 'none', cursor: 'pointer', zIndex: 2,
-        display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px',
-        fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.65rem', fontWeight: 600,
-        color: prepMode === 'precocido' ? DS.colors.white : DS.colors.midGray,
-        transition: 'color 0.3s', textTransform: 'uppercase' as const, letterSpacing: '0.05em'
-      }}
-    >
-      <Flame size={14} /> Precocidos
-    </button>
-  </div>
-
-  {/* Texto Explicativo Dinámico */}
-  <p style={{
-    fontFamily: "'Lato', sans-serif",
-    fontSize: '0.75rem',
-    color: DS.colors.midGray,
-    fontStyle: 'italic'
-  }}>
-    {prepMode === 'fresco' 
-      ? "❄️ Línea Técnica: Requiere fritura profunda para el acabado hojaldrado original."
-      : "🔥 Línea Express: Pre-fritos artesanalmente. Ideales para Air Fryer u Horno."
-    }
-  </p>
-</div>
-  const filteredProducts = ALL_PRODUCTS.filter(p => {
-    const matchesSearch = p.nombre.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = activeCategory === 'Todos' || p.categoria === activeCategory;
-    return matchesSearch && matchesCategory;
-  });
+  const filteredProducts = ALL_PRODUCTS
+    .filter(p => {
+      const isFresco = p.nombre.toLowerCase().includes('fresco');
+      const isPrecocido = p.nombre.toLowerCase().includes('precocido');
+      if (prepMode === 'fresco') return !isPrecocido;
+      if (prepMode === 'precocido') return !isFresco;
+      return true;
+    })
+    .filter(p => {
+      const matchesSearch = p.nombre.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesCategory = activeCategory === 'Todos' || p.categoria === activeCategory;
+      return matchesSearch && matchesCategory;
+    });
 
   const subtotal = getCartSubtotal();
   const shipping = 120;
@@ -547,6 +469,82 @@ const [prepMode, setPrepMode] = useState<'fresco' | 'precocido'>('fresco');
           <span style={{ fontSize: '1.5rem' }}>🏪</span>
         </div>
 
+        {/* ── TOGGLE FRESCO / PRECOCIDO ── */}
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column' as const,
+          alignItems: 'center',
+          marginBottom: '40px',
+          gap: '12px',
+          padding: '0 16px',
+        }}>
+          <div style={{
+            display: 'flex',
+            background: DS.colors.lightGray,
+            padding: '4px',
+            borderRadius: '14px',
+            border: `1px solid ${DS.colors.border}`,
+            position: 'relative',
+            width: '280px',
+            height: '48px',
+          }}>
+            {/* Fondo Deslizable (Indicador) */}
+            <div style={{
+              position: 'absolute',
+              top: '4px',
+              bottom: '4px',
+              left: prepMode === 'fresco' ? '4px' : '50%',
+              width: 'calc(50% - 4px)',
+              background: DS.colors.golden,
+              borderRadius: '10px',
+              transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+              zIndex: 1,
+              boxShadow: '0 2px 8px rgba(184, 134, 11, 0.2)',
+            }} />
+
+            {/* Opción: Fresco */}
+            <button
+              onClick={() => setPrepMode('fresco')}
+              style={{
+                flex: 1, border: 'none', background: 'none', cursor: 'pointer', zIndex: 2,
+                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px',
+                fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.65rem', fontWeight: 600,
+                color: prepMode === 'fresco' ? DS.colors.white : DS.colors.midGray,
+                transition: 'color 0.3s', textTransform: 'uppercase' as const, letterSpacing: '0.05em',
+              }}
+            >
+              <Snowflake size={14} /> Crudos
+            </button>
+
+            {/* Opción: Precocido */}
+            <button
+              onClick={() => setPrepMode('precocido')}
+              style={{
+                flex: 1, border: 'none', background: 'none', cursor: 'pointer', zIndex: 2,
+                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px',
+                fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.65rem', fontWeight: 600,
+                color: prepMode === 'precocido' ? DS.colors.white : DS.colors.midGray,
+                transition: 'color 0.3s', textTransform: 'uppercase' as const, letterSpacing: '0.05em',
+              }}
+            >
+              <Flame size={14} /> Precocidos
+            </button>
+          </div>
+
+          {/* Texto Explicativo Dinámico */}
+          <p style={{
+            fontFamily: "'Lato', sans-serif",
+            fontSize: '0.75rem',
+            color: DS.colors.midGray,
+            fontStyle: 'italic',
+          }}>
+            {prepMode === 'fresco'
+              ? "❄️ Línea Técnica: Requiere fritura profunda para el acabado hojaldrado original."
+              : "🔥 Línea Express: Pre-fritos artesanalmente. Ideales para Air Fryer u Horno."
+            }
+          </p>
+        </div>
+
         {/* ── PRODUCTS GRID ── */}
         <div style={{
           display: 'grid',
@@ -635,22 +633,22 @@ const [prepMode, setPrepMode] = useState<'fresco' | 'precocido'>('fresco');
               <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.55rem', letterSpacing: '0.2em', color: DS.colors.midGray, textTransform: 'uppercase' as const, marginBottom: '8px' }}>Catálogo</p>
               {categoryNames.map(cat => (
                 <button
-  key={cat}
-  onClick={() => { setActiveCategory(cat); setIsMenuOpen(false); }}
-  style={{
-    textAlign: 'left' as const, 
-    border: 'none', 
-    cursor: 'pointer',
-    padding: '10px 12px', 
-    borderRadius: '6px',
-    fontFamily: "'Cormorant Garamond', Georgia, serif",
-    fontSize: '1.3rem', 
-    fontWeight: activeCategory === cat ? 600 : 400,
-    color: activeCategory === cat ? DS.colors.golden : DS.colors.charcoal,
-    background: activeCategory === cat ? DS.colors.sandLight : 'transparent',
-    transition: 'all 150ms',
-  }}>
-                
+                  key={cat}
+                  onClick={() => { setActiveCategory(cat); setIsMenuOpen(false); }}
+                  style={{
+                    textAlign: 'left' as const,
+                    border: 'none',
+                    cursor: 'pointer',
+                    padding: '10px 12px',
+                    borderRadius: '6px',
+                    fontFamily: "'Cormorant Garamond', Georgia, serif",
+                    fontSize: '1.3rem',
+                    fontWeight: activeCategory === cat ? 600 : 400,
+                    color: activeCategory === cat ? DS.colors.golden : DS.colors.charcoal,
+                    background: activeCategory === cat ? DS.colors.sandLight : 'transparent',
+                    transition: 'all 150ms',
+                  }}
+                >
                   {cat}
                 </button>
               ))}
@@ -697,16 +695,17 @@ const [prepMode, setPrepMode] = useState<'fresco' | 'precocido'>('fresco');
 
             {/* CTA */}
             <SignedIn>
-              <button style={{
-                width: '100%', padding: '16px',
-                background: DS.colors.charcoal, color: DS.colors.white,
-                border: 'none', borderRadius: '8px', cursor: 'pointer',
-                fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.75rem',
-                letterSpacing: '0.12em', textTransform: 'uppercase' as const, fontWeight: 500,
-                transition: 'background 150ms',
-              }}
-              onMouseEnter={e => (e.currentTarget.style.background = DS.colors.golden)}
-              onMouseLeave={e => (e.currentTarget.style.background = DS.colors.charcoal)}
+              <button
+                style={{
+                  width: '100%', padding: '16px',
+                  background: DS.colors.charcoal, color: DS.colors.white,
+                  border: 'none', borderRadius: '8px', cursor: 'pointer',
+                  fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.75rem',
+                  letterSpacing: '0.12em', textTransform: 'uppercase' as const, fontWeight: 500,
+                  transition: 'background 150ms',
+                }}
+                onMouseEnter={e => (e.currentTarget.style.background = DS.colors.golden)}
+                onMouseLeave={e => (e.currentTarget.style.background = DS.colors.charcoal)}
               >
                 Continuar al Pago
               </button>
@@ -742,4 +741,4 @@ const [prepMode, setPrepMode] = useState<'fresco' | 'precocido'>('fresco');
       </main>
     </>
   );
-    }
+                 }
