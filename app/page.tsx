@@ -563,7 +563,7 @@ export default function Home() {
     background: activeCategory === cat ? DS.colors.sandLight : 'transparent',
     transition: 'all 150ms',
   }}>
-                >
+                
                   {cat}
                 </button>
               ))}
