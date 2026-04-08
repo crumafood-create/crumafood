@@ -286,7 +286,6 @@ function CoccionSection() {
 ───────────────────────────────────────────── */
 export default function Home() {
   const { cart, addToCart, getCartSubtotal } = useCart();
-  const [prepMode, setPrepMode] = useState<'fresco' | 'precocido'>('fresco');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeCategoryData.products
   .filter(p => {
@@ -306,13 +305,14 @@ export default function Home() {
   const [searchTerm, setSearchTerm] = useState('');
 
   const categoryNames = ['Todos', ...CATEGORIES.map(c => c.name)];
+}}>
+const [prepMode, setPrepMode] = useState<'fresco' | 'precocido'>('fresco');
 <div style={{
   display: 'flex',
   flexDirection: 'column' as const,
   alignItems: 'center',
   marginBottom: '40px',
   gap: '12px'
-}}>
   <div style={{
     display: 'flex',
     background: DS.colors.lightGray,
