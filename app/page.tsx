@@ -716,6 +716,18 @@ export default function Home() {
                 <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.6rem', letterSpacing: '0.1em', color: DS.colors.midGray, textTransform: 'uppercase' as const }}>
                   {cart.length} producto{cart.length > 1 ? 's' : ''} · Envío incl.
                 </p>
+                 {/* ... aquí termina el bloque del Master Toggle que pegamos antes ... */}
+</p>
+</div> 
+
+{/* PÉGALO JUSTO AQUÍ */}
+<div style={{ padding: '0 16px', maxWidth: '1200px', margin: '0 auto' }}>
+  {activeCategoryData.subcategories ? (
+    // ... resto del código que me pasaste ...
+  ) : (
+    // ... bloque para categorías simples ...
+  )}
+</div>
                 <p style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: '1.8rem', fontWeight: 700, color: DS.colors.charcoal, lineHeight: 1 }}>
                   ${total} <span style={{ fontSize: '0.9rem', fontWeight: 400, color: DS.colors.midGray }}>MXN</span>
                 </p>
