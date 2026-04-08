@@ -288,7 +288,21 @@ export default function Home() {
   const { cart, addToCart, getCartSubtotal } = useCart();
   const [prepMode, setPrepMode] = useState<'fresco' | 'precocido'>('fresco');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeCategory, setActiveCategory] = useState('Todos');
+  const [activeCategoryData.products
+  .filter(p => {
+    const isFresco = p.nombre.toLowerCase().includes('fresco');
+    const isPrecocido = p.nombre.toLowerCase().includes('precocido');
+    
+    // Si elegimos "Crudos", mostramos lo que no sea precocido
+    if (prepMode === 'fresco') return !isPrecocido;
+    // Si elegimos "Precocidos", mostramos lo que no sea fresco
+    if (prepMode === 'precocido') return !isFresco;
+    return true;
+  })
+  .map((product) => (
+    <ProductCard key={product.id} product={product} />
+  ))
+]
   const [searchTerm, setSearchTerm] = useState('');
 
   const categoryNames = ['Todos', ...CATEGORIES.map(c => c.name)];
