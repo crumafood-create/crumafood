@@ -286,12 +286,85 @@ function CoccionSection() {
 ───────────────────────────────────────────── */
 export default function Home() {
   const { cart, addToCart, getCartSubtotal } = useCart();
+  const [prepMode, setPrepMode] = useState<'fresco' | 'precocido'>('fresco');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState('Todos');
   const [searchTerm, setSearchTerm] = useState('');
 
   const categoryNames = ['Todos', ...CATEGORIES.map(c => c.name)];
+<div style={{
+  display: 'flex',
+  flexDirection: 'column' as const,
+  alignItems: 'center',
+  marginBottom: '40px',
+  gap: '12px'
+}}>
+  <div style={{
+    display: 'flex',
+    background: DS.colors.lightGray,
+    padding: '4px',
+    borderRadius: '14px',
+    border: `1px solid ${DS.colors.border}`,
+    position: 'relative',
+    width: '280px',
+    height: '48px'
+  }}>
+    {/* Fondo Deslizable (Indicador) */}
+    <div style={{
+      position: 'absolute',
+      top: '4px',
+      bottom: '4px',
+      left: prepMode === 'fresco' ? '4px' : '50%',
+      width: 'calc(50% - 4px)',
+      background: DS.colors.golden,
+      borderRadius: '10px',
+      transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+      zIndex: 1,
+      boxShadow: '0 2px 8px rgba(184, 134, 11, 0.2)'
+    }} />
 
+    {/* Opción: Fresco */}
+    <button
+      onClick={() => setPrepMode('fresco')}
+      style={{
+        flex: 1, border: 'none', background: 'none', cursor: 'pointer', zIndex: 2,
+        display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px',
+        fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.65rem', fontWeight: 600,
+        color: prepMode === 'fresco' ? DS.colors.white : DS.colors.midGray,
+        transition: 'color 0.3s', textTransform: 'uppercase' as const, letterSpacing: '0.05em'
+      }}
+    >
+      <Snowflake size={14} /> Crudos
+    </button>
+
+    {/* Opción: Precocido */}
+    <button
+      onClick={() => setPrepMode('precocido')}
+      style={{
+        flex: 1, border: 'none', background: 'none', cursor: 'pointer', zIndex: 2,
+        display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px',
+        fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.65rem', fontWeight: 600,
+        color: prepMode === 'precocido' ? DS.colors.white : DS.colors.midGray,
+        transition: 'color 0.3s', textTransform: 'uppercase' as const, letterSpacing: '0.05em'
+      }}
+    >
+      <Flame size={14} /> Precocidos
+    </button>
+  </div>
+
+  {/* Texto Explicativo Dinámico */}
+  <p style={{
+    fontFamily: "'Lato', sans-serif",
+    fontSize: '0.75rem',
+    color: DS.colors.midGray,
+    fontStyle: 'italic'
+  }}>
+    {prepMode === 'fresco' 
+      ? "❄️ Línea Técnica: Requiere fritura profunda para el acabado hojaldrado original."
+      : "🔥 Línea Express: Pre-fritos artesanalmente. Ideales para Air Fryer u Horno."
+    }
+  </p>
+</div>
   const filteredProducts = ALL_PRODUCTS.filter(p => {
     const matchesSearch = p.nombre.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = activeCategory === 'Todos' || p.categoria === activeCategory;
